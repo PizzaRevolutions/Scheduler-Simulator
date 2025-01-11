@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/jpg" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<html>
+
+<html>
+
+<section id="header">
+    <div class="headerleft">
+        <img src="logo.png" class="logo" id="logo">
+        <h3> Scheduler </h3>
+    </div>
+    <div>
+        <ul id="navbar">
+
+            <li><a class="active" href="http://enrico4giuffrida.altervista.org/CART.html">Scheduler</a>
+            </li>
+            <li>
+                <div>
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                        <span class="ball"></span>
+                    </label>
+                </div>
+            </li>
+
+    </div>
+</section>
+
+<section id="FormS">
+    <h2><i class="fa-solid fa-clock"></i> Scheduler</h2>
+    <p>Here you can simulate how CS algorithms works, by putting random stuff. Enjoy!</p>
+
+
+    <div class="Workspace">
+        <div class="container">
+            <label for="numeroProcessi">Number of process:</label>
+            <input type="number" id="numeroProcessi" value="13">
+            <label for="arrivoMassimo">Max Arrive:</label>
+            <input type="number" id="arrivoMassimo" value="10">
+
+            <label for="durataMassima">Max Duration:</label>
+            <input type="number" id="durataMassima" value="10">
+
+            <label for="quantodiTempo">Quanto:</label>
+            <input type="number" id="quantodiTempo" value="10">
+
+            <label for="Clockspeed">Clock:</label>
+            <input type="number" id="Clockspeed" value="10">
+
+            <label for="Priorita">Max Priority:</label>
+            <input type="number" id="Priorita" value="10">
+
+
+            <label for="Tipodialgoritmo">Algorithm type:</label>
+            <select name="Tipodialgoritmo" id="Tipodialgoritmo">
+                <option value="round robin">Round Robin</option>
+                <option value="FCFS">FCFS</option>
+                <option value="priorita">Priorita'</option>
+                <option value="SRTF">SRTF</option>
+            </select>
+
+
+            <button class="Creation" onclick="addProcesses()"> Create processes</button>
+            <button class="Start" disabled> Start simulation</button>
+            <button class="Stop" disabled> Stop simulation</button>
+
+        </div>
+
+
+        <div class="Coda">
+            <label for="Coda">Queue:</label>
+        </div>
+
+        <div class="Processi">
+
+
+            <table class="Tavoloprocessi">
+               
+            </table>
+        </div>
+
+        <div class="Tabella">
+
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+<script>
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function addProcesses() {
+    const numeroProcessi = parseInt(document.getElementById("numeroProcessi").value);
+    const arrivoMassimo = parseInt(document.getElementById("arrivoMassimo").value);
+    const durataMassima = parseInt(document.getElementById("durataMassima").value);
+    const prioritaMassima = parseInt(document.getElementById("Priorita").value);
+
+    let processes = [];
+
+
+    for (let i = 0; i < numeroProcessi; i++) {
+        const arrive = getRandomInt(1, arrivoMassimo);
+        const duration = getRandomInt(1, durataMassima);
+        const priority = getRandomInt(1, prioritaMassima);
+
+        processes.push({ name: `P${i}`, arrive, duration, priority });
+    }
+
+
+    processes.sort((a, b) => a.arrive - b.arrive);
+
+
+    processes.forEach((process, index) => {
+        process.name = `P${index}`;
+    });
+
+    const table = document.querySelector('.Tavoloprocessi');
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Arrive</th>
+            <th>Duration</th>
+            <th>Priority</th>
+            <th>T.T.</th>
+            <th>T.W.</th>
+        </tr>
+    `;
+
+
+    processes.forEach(process => {
+        const newRow = `
+            <tr>
+                <td>${process.name}</td>
+                <td>${process.arrive}</td>
+                <td>${process.duration}</td>
+                <td>${process.priority}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        `;
+        table.innerHTML += newRow;
+    });
+
+    // Recalculate and update the left position
+    updateLeftPosition();
+}
+
+// Function to update the left position of 'elemento3'
+function updateLeftPosition() {
+    const elemento1 = document.querySelector('.container');
+    const elemento2 = document.querySelector('.Processi');
+    const elemento3 = document.querySelector('.Tabella');
+
+    const larghezza1 = elemento1.offsetWidth;
+    const larghezza2 = elemento2.offsetWidth;
+    const sommaLarghezze = larghezza1 + larghezza2;
+
+    elemento3.style.left = sommaLarghezze + 'px';
+}
+
+// Initial call to set the position (in case of initial layout)
+updateLeftPosition();
+
+</script>
+
+</html>
