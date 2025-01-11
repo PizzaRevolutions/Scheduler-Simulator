@@ -18,10 +18,3 @@ This project is a simple web-based CPU scheduling algorithm simulator. It allows
 4. **Start Simulation:** Press the "Start simulation" button to begin the scheduling simulation. The simulator will process the queue based on the selected algorithm.
 5. **Observe Results:**  Watch the calculated Turnaround Time and Waiting Time for each process as the simulation progresses.
 6. **Stop Simulation:** Click the "Stop simulation" button to halt the simulation.
-
-## Potential Future Enhancements
-
-*   Implementation of more scheduling algorithms (FCFS, SJF, Priority Scheduling, etc.).
-*   Visual representation of the scheduling timeline (Gantt chart).
-*   More detailed simulation statistics and analysis.
-*   User interface improvements and customization options.
