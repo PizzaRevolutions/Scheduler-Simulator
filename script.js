@@ -33,12 +33,12 @@ function addProcesses() {
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
         <tr>
-            <th>Name</th>
-            <th>Arrive</th>
-            <th>Duration</th>
-            <th>Priority</th>
-            <th>T.T.</th>
-            <th>T.W.</th>
+            <th class="Name">Name</th>
+            <th class="Arrive">Arrive</th>
+            <th class="Duration">Duration</th>
+            <th class="Priority">Priority</th>
+            <th class="T.T.">T.T.</th>
+            <th class="T.W.">T.W.</th>
         </tr>
     `;
 
@@ -80,6 +80,7 @@ function startSimulation() {
 }
 
 function simula() {
+    // simula il processo
 }
 // Initial call to set the position (in case of initial layout)
 updateLeftPosition();
