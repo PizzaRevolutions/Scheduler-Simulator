@@ -1,3 +1,5 @@
+let coda = [];
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -72,5 +74,12 @@ function updateLeftPosition() {
     elemento3.style.left = sommaLarghezze + 'px';
 }
 
+function startSimulation() {
+    let quanto = document.getElementById("quanto").value;
+    setInterval(simula(), quanto);
+}
+
+function simula() {
+}
 // Initial call to set the position (in case of initial layout)
 updateLeftPosition();
