@@ -30,6 +30,8 @@ function addProcesses() {
         process.name = `P${index}`;
     });
 
+    processes_data = [...processes]; // Salva i dati dei processi generati
+
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
         <tr>
@@ -74,9 +76,47 @@ function updateLeftPosition() {
     elemento3.style.left = sommaLarghezze + 'px';
 }
 
+let clock = 0;
+let queue = [];
+let processes_data = [];
+let time_quantum;
+
 function startSimulation() {
-    let quanto = document.getElementById("quanto").value;
-    setInterval(simula(), quanto);
+    const algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
+    if (algoritmoSelezionato === "round robin") {
+        time_quantum = parseInt(document.getElementById("quantodiTempo").value);
+        if (isNaN(time_quantum) || time_quantum <= 0) {
+            alert("Inserisci un quanto di tempo valido per Round Robin.");
+            return;
+        }
+        clock = 0;
+        queue = [...processes_data]; // Copia l'array di processi
+        setInterval(simulaRoundRobin, 1000); // Esegui simulaRoundRobin ogni secondo
+    } else {
+        alert("La simulazione è implementata solo per Round Robin.");
+    }
+}
+
+function simulaRoundRobin() {
+    if (queue.length > 0) {
+        const currentProcess = queue.shift();
+        const executionTime = Math.min(time_quantum, currentProcess.duration);
+
+        console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+
+        currentProcess.duration -= executionTime;
+        clock += executionTime;
+
+        if (currentProcess.duration > 0) {
+            queue.push(currentProcess); // Rimetti il processo in coda se non è finito
+        } else {
+            console.log(`${currentProcess.name} completato al tempo ${clock}.`);
+            // Qui puoi aggiungere la logica per rimuovere il processo dalla visualizzazione
+        }
+    } else {
+        console.log("Simulazione completata.");
+        clearInterval(simulaRoundRobin); // Ferma l'intervallo
+    }
 }
 
 function simula() {
