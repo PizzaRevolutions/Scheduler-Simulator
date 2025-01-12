@@ -1,5 +1,3 @@
-let coda = [];
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -82,21 +80,22 @@ let processes_data = [];
 let time_quantum;
 
 function startSimulation() {
-    const algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
+    let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
     if (algoritmoSelezionato === "round robin") {
         time_quantum = parseInt(document.getElementById("quantodiTempo").value);
-        if (isNaN(time_quantum) || time_quantum <= 0) {
-            alert("Inserisci un quanto di tempo valido per Round Robin.");
-            return;
-        }
         clock = 0;
         queue = [...processes_data]; // Copia l'array di processi
+        aggiornaCoda();
         setInterval(simulaRoundRobin, 1000); // Esegui simulaRoundRobin ogni secondo
     } else {
-        alert("La simulazione è implementata solo per Round Robin.");
+        alert("La simulazione è implementata solo per Round Robin, al momento.");
     }
 }
 
+function aggiornaCoda() {
+    const coda = document.getElementById("Coda");
+    coda.innerHTML = queue.map(process => process.name).join(', ');
+}
 function simulaRoundRobin() {
     if (queue.length > 0) {
         const currentProcess = queue.shift();
@@ -117,6 +116,7 @@ function simulaRoundRobin() {
         console.log("Simulazione completata.");
         clearInterval(simulaRoundRobin); // Ferma l'intervallo
     }
+    aggiornaCoda();
 }
 
 function simula() {
