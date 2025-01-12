@@ -1,4 +1,4 @@
-# Scheduler Simulator (English description)
+# Scheduler Simulator (English)
 
 This project is a simple web-based CPU scheduling algorithm simulator. It allows you to experiment with different scheduling algorithms and visualize how processes are managed.
 
@@ -19,7 +19,7 @@ This project is a simple web-based CPU scheduling algorithm simulator. It allows
 5. **Observe Results:**  Watch the calculated Turnaround Time and Waiting Time for each process as the simulation progresses.
 6. **Stop Simulation:** Click the "Stop simulation" button to halt the simulation.
 
-# Simulatore di Scheduling (Descrizione italiana)
+# Simulatore di Scheduling (Italian)
 
 Questo progetto è un semplice simulatore web di algoritmi di scheduling della CPU. Ti permette di sperimentare con diversi algoritmi di scheduling e visualizzare come i processi vengono gestiti.
 
