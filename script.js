@@ -1,7 +1,12 @@
+// Global variables
+let clock = 0;
+let queue = [];
+let processes_data = [];
+let time_quantum;
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-// Prova
 
 function addProcesses() {
     const numeroProcessi = parseInt(document.getElementById("numeroProcessi").value);
@@ -27,8 +32,7 @@ function addProcesses() {
     processes.forEach((process, index) => {
         process.name = `P${index}`;
     });
-
-    processes_data = [...processes]; // Salva i dati dei processi generati
+    processes_data = [...processes]; // Save the generated processes
 
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
@@ -73,11 +77,6 @@ function updateLeftPosition() {
 
     elemento3.style.left = sommaLarghezze + 'px';
 }
-
-let clock = 0;
-let queue = [];
-let processes_data = [];
-let time_quantum;
 
 function startSimulation() {
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
