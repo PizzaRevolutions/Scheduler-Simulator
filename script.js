@@ -32,7 +32,7 @@ function addProcesses() {
 
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
-        <tr>
+        <tr id="processi">
             <th class="Name">Name</th>
             <th class="Arrive">Arrive</th>
             <th class="Duration">Duration</th>
@@ -45,7 +45,7 @@ function addProcesses() {
 
     processes.forEach(process => {
         const newRow = `
-            <tr>
+            <tr id="${process.name}">
                 <td>${process.name}</td>
                 <td>${process.arrive}</td>
                 <td>${process.duration}</td>
@@ -97,6 +97,7 @@ function aggiornaCoda() {
     coda.innerHTML = queue.map(process => process.name).join(', ');
 }
 function simulaRoundRobin() {
+    const table = document.getElementsByClassName('Tavoloprocessi');
     if (queue.length > 0) {
         const currentProcess = queue.shift();
         const executionTime = Math.min(time_quantum, currentProcess.duration);
@@ -105,6 +106,8 @@ function simulaRoundRobin() {
 
         currentProcess.duration -= executionTime;
         clock += executionTime;
+
+        aggiornaTabella(currentProcess, executionTime);
 
         if (currentProcess.duration > 0) {
             queue.push(currentProcess); // Rimetti il processo in coda se non è finito
@@ -119,8 +122,16 @@ function simulaRoundRobin() {
     aggiornaCoda();
 }
 
-function simula() {
-    // simula il processo
+function aggiornaTabella(process, executionTime) {
+    const intestazione = document.getElementById('processi');
+    const processii = document.getElementById(process.name);
+    for (let i = 0; i < executionTime; i++) {
+        intestazione.innerHTML += `
+            <th>${process.name}</th>
+        `;
+    }
+    updateLeftPosition();
 }
+
 // Initial call to set the position (in case of initial layout)
 updateLeftPosition();
