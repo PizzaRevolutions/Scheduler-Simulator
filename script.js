@@ -129,6 +129,7 @@ function aggiornaTabella(process, executionTime) {
         intestazione.innerHTML += `
             <th>${process.name}</th>
         `;
+        // Da fare: aggiornare la tabella con il processo che sta in esecuzione
     }
     updateLeftPosition();
 }
