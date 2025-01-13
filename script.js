@@ -1,3 +1,21 @@
+//darkmode
+document.addEventListener('DOMContentLoaded', function () {
+    const themeCheckbox = document.getElementById('checkbox');
+    const body = document.body;
+
+    themeCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            body.classList.add('dark-theme');
+        } else {
+            body.classList.remove('dark-theme');
+        }
+    });
+});
+
+
+
+
+
 // Global variables
 let clock = 0;
 let queue = [];
