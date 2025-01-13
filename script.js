@@ -1,17 +1,21 @@
-/*darkmode
+//darkmode
 document.addEventListener('DOMContentLoaded', function () {
-    const themeCheckbox = document.getElementById('checkbox');
-    const body = document.body;
+        const themeCheckbox = document.getElementById('checkbox');
+        const body = document.body;
 
-    themeCheckbox.addEventListener('change', function () {
-        if (this.checked) {
-            body.classList.add('dark-theme');
-        } else {
-            body.classList.remove('dark-theme');
-        }
+        let logo = document.getElementById("logo")
+
+        themeCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                body.classList.add('dark-theme');
+                logo.src = "logo-d.png";
+            } else {
+                body.classList.remove('dark-theme');
+                logo.src = "logo.png";
+            }
+        });
     });
-});
-*/
+
 
 
 
