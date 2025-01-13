@@ -82,10 +82,10 @@ function startSimulation() {
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
     if (algoritmoSelezionato === "round robin") {
         time_quantum = parseInt(document.getElementById("quantodiTempo").value);
-        clock = 0;
-        queue = [...processes_data]; // Copia l'array di processi
+        clock = document.getElementById("Clockspeed").value;
+        queue = [...processes_data];
         aggiornaCoda();
-        setInterval(simulaRoundRobin, 1000); // Esegui simulaRoundRobin ogni secondo
+        setInterval(simulaRoundRobin, clock);
     } else {
         alert("La simulazione è implementata solo per Round Robin, al momento.");
     }
@@ -104,7 +104,6 @@ function simulaRoundRobin() {
         console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
 
         currentProcess.duration -= executionTime;
-        clock += executionTime;
 
         aggiornaTabella(currentProcess, executionTime);
 
