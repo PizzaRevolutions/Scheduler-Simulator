@@ -1,4 +1,4 @@
-//darkmode
+/*darkmode
 document.addEventListener('DOMContentLoaded', function () {
     const themeCheckbox = document.getElementById('checkbox');
     const body = document.body;
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
+*/
 
 
 
