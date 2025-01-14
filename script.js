@@ -104,22 +104,24 @@ function updateLeftPosition() {
 
 function startSimulation() {
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
+    time_quantum = parseInt(document.getElementById("quantodiTempo").value);
+    clock = document.getElementById("Clockspeed").value;
+    queue = [...processes_data];
+    refreshCoda();
     if (algoritmoSelezionato === "round robin") {
-        time_quantum = parseInt(document.getElementById("quantodiTempo").value);
-        clock = document.getElementById("Clockspeed").value;
-        queue = [...processes_data];
-        aggiornaCoda();
-        setInterval(simulaRoundRobin, clock);
+        setInterval(roundRobin, clock);
+    } else if (algoritmoSelezionato === "FCFS") {
+        setInterval(FCFS, clock);
     } else {
-        alert("La simulazione è implementata solo per Round Robin, al momento.");
+        alert("La simulazione è implementata solo per Round Robin e FCFS, al momento.");
     }
 }
 
-function aggiornaCoda() {
+function refreshCoda() {
     const coda = document.getElementById("Coda");
     coda.innerHTML = queue.map(process => process.name).join(', ');
 }
-function simulaRoundRobin() {
+function roundRobin() {
     if (queue.length > 0) {
         const currentProcess = queue.shift();
         if (currentProcess.arrive > actual_time) {
@@ -136,14 +138,32 @@ function simulaRoundRobin() {
         if (currentProcess.duration > 0) {
             queue.push(currentProcess); // Rimetti il processo in coda se non è finito
         } else {
-            console.log(`${currentProcess.name} completato al tempo ${clock}.`);
+            console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
             // Qui puoi aggiungere la logica per rimuovere il processo dalla visualizzazione
         }
     } else {
         console.log("Simulazione completata.");
-        clearInterval(simulaRoundRobin); // Ferma l'intervallo
+        clearInterval(roundRobin); // Ferma l'intervallo
     }
-    aggiornaCoda();
+    refreshCoda();
+}
+
+function FCFS() {
+    if (queue.length > 0) {
+        const currentProcess = queue.shift();
+        if (currentProcess.arrive > actual_time) {
+            actual_time = currentProcess.arrive;
+        }
+        const executionTime = currentProcess.duration;
+        console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+        actual_time += executionTime;
+        aggiornaTabella(currentProcess, executionTime);
+        console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+    } else {
+        console.log("Simulazione completata.");
+        clearInterval(FCFS); // Ferma l'intervallo
+    }
+    refreshCoda();
 }
 
 function aggiornaTabella(process, executionTime) {
