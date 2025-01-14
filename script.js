@@ -166,6 +166,14 @@ function FCFS() {
     refreshCoda();
 }
 
+function priority() {
+    // Ordinare diversamente in partenza?
+}
+
+function SRTF() {
+    // Ordinare diversamente in partenza?
+}
+
 function aggiornaTabella(process, executionTime) {
     const intestazione = document.getElementById('processi');
     const processii = document.getElementById(process.name);
