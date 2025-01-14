@@ -1,4 +1,4 @@
-//darkmode
+//Darkmode
 document.addEventListener('DOMContentLoaded', function () {
         const themeCheckbox = document.getElementById('checkbox');
         const body = document.body;
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
         themeCheckbox.addEventListener('change', function () {
             if (this.checked) {
                 body.classList.add('dark-theme');
-                
                 logo.src = "images/logos/logo-d.png";
                 pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
                 pfpS.src = "images/pfps/Salvo Lombardo-d.png";
