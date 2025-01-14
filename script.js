@@ -37,9 +37,9 @@ function addProcesses() {
     const arrivoMassimo = parseInt(document.getElementById("arrivoMassimo").value);
     const durataMassima = parseInt(document.getElementById("durataMassima").value);
     const prioritaMassima = parseInt(document.getElementById("Priorita").value);
+    const algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
 
     let processes = [];
-
 
     for (let i = 0; i < numeroProcessi; i++) {
         const arrive = getRandomInt(1, arrivoMassimo);
@@ -49,8 +49,9 @@ function addProcesses() {
         processes.push({ name: `P${i}`, arrive, duration, priority });
     }
 
-
-    processes.sort((a, b) => a.arrive - b.arrive);
+    if (algoritmoSelezionato === "round robin" || "FCFS") {
+        processes.sort((a, b) => a.arrive - b.arrive);
+    }
 
 
     processes.forEach((process, index) => {
