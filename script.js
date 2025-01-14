@@ -25,6 +25,8 @@ let clock = 0;
 let queue = [];
 let processes_data = [];
 let time_quantum;
+let actual_time = 0;
+
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -118,15 +120,17 @@ function aggiornaCoda() {
     coda.innerHTML = queue.map(process => process.name).join(', ');
 }
 function simulaRoundRobin() {
-    const table = document.getElementsByClassName('Tavoloprocessi');
     if (queue.length > 0) {
         const currentProcess = queue.shift();
+        if (currentProcess.arrive > actual_time) {
+            actual_time = currentProcess.arrive;
+        }
         const executionTime = Math.min(time_quantum, currentProcess.duration);
 
         console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
 
         currentProcess.duration -= executionTime;
-
+        actual_time += executionTime;
         aggiornaTabella(currentProcess, executionTime);
 
         if (currentProcess.duration > 0) {
