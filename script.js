@@ -4,14 +4,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const body = document.body;
 
         let logo = document.getElementById("logo")
+        let pfpE = document.getElementById("Enrico")
+        let pfpS = document.getElementById("Salvatore")
+
 
         themeCheckbox.addEventListener('change', function () {
             if (this.checked) {
                 body.classList.add('dark-theme');
-                logo.src = "logo-d.png";
+                
+                logo.src = "images/logos/logo-d.png";
+                pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
+                pfpS.src = "images/pfps/Salvo Lombardo-d.png";
+
             } else {
                 body.classList.remove('dark-theme');
-                logo.src = "logo.png";
+                logo.src = "images/logos/logo.png";
+                pfpE.src = "images/pfps/Enrico Giuffrida.png";
+                pfpS.src = "images/pfps/Salvo Lombardo.png";
             }
         });
     });

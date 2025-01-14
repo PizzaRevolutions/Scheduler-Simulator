@@ -13,18 +13,18 @@
     --paragraphs-color: #717171;
 
     --headershadow-color: rgba(0, 0, 0, 0.06);
-    
+
     /* undefined --fifth-color: rgb(255 255 255 / 100%);*/
-    
+
     --labels-color: rgb(0, 0, 0);
-    
+
     /* undefined --seventh-color: rgba(247, 253, 255, 0.96);*/
-    
+
     --inputselect-color: white;
 
     --textsinlabel-color: rgba(56, 56, 56, 0.753);
 
-    
+
 
 }
 
@@ -51,7 +51,7 @@
 
     --textsinlabel-color: rgba(255, 255, 255, 0.371);
 
-    
+
 }
 
 /*GENERALI*/
@@ -163,6 +163,70 @@ body {
     width: 50px;
 }
 
+
+
+.Profili {
+    position: relative;
+    height: 50px;
+    width: 75px;
+    transition: 0.4s ease;
+}
+
+.pfp {
+    width: 50px;
+    position: absolute;
+}
+
+.nome {
+    position: absolute;
+    opacity: 0;
+    top: 15%;
+    font-weight: bold;
+    font-size: 15px;
+    color: #040404;
+    white-space: nowrap;
+    transition: 0.4s ease;
+    padding-left: 55px;
+}
+
+.Profili:hover {
+    width: 360px;
+}
+
+.Profili:hover img[id="Enrico"]{
+    left: 0%;
+}
+
+.Profili:hover span[id="Enrico"]{
+    
+    opacity: 100%;
+}
+
+.Profili:hover img[id="Salvatore"]{
+    left: 50%;
+}
+
+.Profili:hover span[id="Salvatore"]{
+    left: 50%;
+    opacity: 100%;
+}
+
+img[id="Salvatore"] {
+    left: 35%;
+    transition: 0.4s ease-out;
+}
+
+.devs {
+    position: absolute;
+    top: 50%;
+    font-size: 12.5px;
+    padding-left: 55px;
+    opacity: 0;
+    transition: 0.4s ease-out;
+    white-space: nowrap;
+}
+
+
 .headerleft {
     display: flex;
     gap: 20px;
@@ -194,7 +258,7 @@ body {
 #navbar li a:hover,
 #navbar li a.active {
     color: rgba(209, 0, 0, 0.96);
-    text-shadow: -1px 1px 9px rgba(141, 1, 1, 0.96);
+    text-shadow: 0px 0px 2px rgb(196 40 40 / 96%);
     font-weight: 700;
 }
 
@@ -244,7 +308,8 @@ body {
 
 .checkbox-label .ball:hover {
     transition: 0.3s ease;
-    background-color: rgba(238, 0, 0, 0.96);; 
+    background-color: rgba(238, 0, 0, 0.96);
+    ;
 }
 
 
