@@ -121,8 +121,6 @@ function startSimulation() {
         setInterval(FCFS, clock);
     } else if (algoritmoSelezionato === "priorita") {
         setInterval(priority, clock);
-    } else {
-        alert("La simulazione è implementata solo per Round Robin e FCFS, al momento.");
     }
 }
 
@@ -138,7 +136,7 @@ function roundRobin() {
         }
         const executionTime = Math.min(time_quantum, currentProcess.duration);
 
-        console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+        console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
 
         currentProcess.duration -= executionTime;
         actual_time += executionTime;
@@ -154,7 +152,7 @@ function roundRobin() {
         }
     } else {
         console.log("Simulazione completata.");
-        clearInterval(roundRobin); // Ferma l'intervallo
+        clearInterval(roundRobin);
     }
     refreshCoda();
 }
@@ -166,7 +164,7 @@ function FCFS() {
             actual_time = currentProcess.arrive;
         }
         const executionTime = currentProcess.duration;
-        console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+        console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
         actual_time += executionTime;
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
@@ -174,13 +172,31 @@ function FCFS() {
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
     } else {
         console.log("Simulazione completata.");
-        clearInterval(FCFS); // Ferma l'intervallo
+        clearInterval(FCFS);
     }
     refreshCoda();
 }
 
 function priority() {
-    // Ordinare diversamente in partenza?
+    queue.sort((a, b) => b.priority - a.priority);
+    refreshCoda();
+
+    if (queue.length > 0) {
+        const currentProcess = queue.shift();
+        if (currentProcess.arrive > actual_time) {
+            actual_time = currentProcess.arrive;
+        }
+        const executionTime = currentProcess.duration;
+        console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+        actual_time += executionTime;
+        for (let i = 0; i < executionTime; i++) {
+            addColumn(currentProcess);
+        }
+        console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+    } else {
+        console.log("Simulazione completata.");
+        clearInterval(priority);
+    }
 }
 
 function SRTF() {
