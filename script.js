@@ -57,9 +57,7 @@ function addProcesses() {
         processes.push({ name: `P${i}`, arrive, duration, priority });
     }
 
-    if (algoritmoSelezionato === "round robin" || "FCFS") {
-        processes.sort((a, b) => a.arrive - b.arrive);
-    }
+    processes.sort((a, b) => a.arrive - b.arrive);
 
 
     processes.forEach((process, index) => {
@@ -121,6 +119,8 @@ function startSimulation() {
         setInterval(roundRobin, clock);
     } else if (algoritmoSelezionato === "FCFS") {
         setInterval(FCFS, clock);
+    } else if (algoritmoSelezionato === "priorita") {
+        setInterval(priority, clock);
     } else {
         alert("La simulazione è implementata solo per Round Robin e FCFS, al momento.");
     }
@@ -142,7 +142,9 @@ function roundRobin() {
 
         currentProcess.duration -= executionTime;
         actual_time += executionTime;
-        aggiornaTabella(currentProcess, executionTime);
+        for (let i = 0; i < executionTime; i++) {
+            addColumn(currentProcess);
+        }
 
         if (currentProcess.duration > 0) {
             queue.push(currentProcess); // Rimetti il processo in coda se non è finito
@@ -166,7 +168,9 @@ function FCFS() {
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${clock}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
         actual_time += executionTime;
-        aggiornaTabella(currentProcess, executionTime);
+        for (let i = 0; i < executionTime; i++) {
+            addColumn(currentProcess);
+        }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
     } else {
         console.log("Simulazione completata.");
@@ -183,15 +187,25 @@ function SRTF() {
     // Ordinare diversamente in partenza?
 }
 
-function aggiornaTabella(process, executionTime) {
+function addColumn(process) {
     const intestazione = document.getElementById('processi');
-    const processii = document.getElementById(process.name);
-    for (let i = 0; i < executionTime; i++) {
-        intestazione.innerHTML += `
-            <th>${process.name}</th>
-        `;
-        // Da fare: aggiornare la tabella con il processo che sta in esecuzione
+    const riga = document.getElementById(`${process.name}`)
+    intestazione.innerHTML += `
+        <th>${process.name}</th>
+    `;
+    for (let i = 0; i < processes_data.length; i++) {
+        let rigaAttuale = processes_data[i];
+        let rigaAttual = document.getElementById(rigaAttuale.name);
+        if (rigaAttual.name === process.name) {
+            // Non entra mai qui -_-
+            rigaAttual.innerHTML += `
+                <td>boh</td>
+            `;
+        } else {
+            rigaAttual.innerHTML += `<td></td>`;
+        }
     }
+    // Da fare: aggiornare la tabella con il processo che sta in esecuzione
     updateLeftPosition();
 }
 
