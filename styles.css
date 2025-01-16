@@ -58,6 +58,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
+html,
+body {
+    overflow: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -193,19 +198,19 @@ body {
     width: 360px;
 }
 
-.Profili:hover img[id="Enrico"]{
+.Profili:hover img[id="Enrico"] {
     left: 0%;
 }
 
-.Profili:hover span[id="Enrico"]{
+.Profili:hover span[id="Enricos"] {
     opacity: 100%;
 }
 
-.Profili:hover img[id="Salvatore"]{
+.Profili:hover img[id="Salvatore"] {
     left: 50%;
 }
 
-.Profili:hover span[id="Salvatore"]{
+.Profili:hover span[id="Salvatore"] {
     left: 50%;
     opacity: 100%;
 }
@@ -373,32 +378,63 @@ img[id="Salvatore"] {
 
 }
 
+#FormS .Buttons {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #747474;
+}
+
+#FormS .Buttons-2 {
+    position: relative;
+    height: 80px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+
+
+
 
 
 #FormS button {
-
+    position: absolute;
     font-size: 15px;
-    width: 100%;
+    width: 40px;
     height: 40px;
+    border-radius: 50px;
     border: none;
     background-color: rgba(209, 0, 0, 0.96);
-    border-radius: 5px;
     color: white;
-    margin-bottom: 10px;
     transition: 0.3s ease;
 }
 
-#FormS button:disabled {
+#FormS button[id="Center-button"] {
+    width: 60px;
+    height: 60px;
+    font-size: 17px;
+    z-index: 1;
+}
 
-    font-size: 15px;
-    width: 100%;
-    height: 40px;
-    border: none;
+#FormS .Buttons-2:hover button[id="Sx-button"] {
+    margin-right: 120px;
+}
+
+#FormS .Buttons-2:hover button[id="Dx-button"] {
+    margin-left: 120px;
+}
+
+#FormS button:disabled {
     background-color: rgba(150, 150, 150, 0.96);
-    border-radius: 5px;
-    color: white;
-    margin-bottom: 10px;
-    transition: 0.3s ease;
 }
 
 #FormS button:hover:disabled {
@@ -414,15 +450,18 @@ img[id="Salvatore"] {
 }
 
 #FormS .container {
+    position: relative;
     width: 25%;
     height: 70vh;
     border: 2.5px solid #747474;
-    border-radius: 8px;
+    background-color: #ffffff;
     display: grid;
     gap: 0.25rem;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 30px 20px;
+    padding-bottom: 90px;
+    padding-top: 80px;
 
 }
 
@@ -455,15 +494,16 @@ img[id="Salvatore"] {
 #FormS .Processi {
 
     padding: 2px 10px;
-    width: auto;
-    height: auto;
+    width: 140vh;
+    height: 61.5vh;
+    overflow: auto;
     position: absolute;
     left: 26%;
     top: 72px;
 }
 
 #FormS .Tavoloprocessi {
-    width: 100%;
+    width: fit-content;
     border-collapse: collapse;
 
 }
@@ -473,6 +513,7 @@ td {
     border: 2.5px solid #747474;
     text-align: center;
     padding: 8px;
+
 }
 
 #FormS .Tavoloprocessi th {

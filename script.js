@@ -1,28 +1,28 @@
 //Darkmode
 document.addEventListener('DOMContentLoaded', function () {
-        const themeCheckbox = document.getElementById('checkbox');
-        const body = document.body;
+    const themeCheckbox = document.getElementById('checkbox');
+    const body = document.body;
 
-        let logo = document.getElementById("logo")
-        let pfpE = document.getElementById("Enrico")
-        let pfpS = document.getElementById("Salvatore")
+    let logo = document.getElementById("logo")
+    let pfpE = document.getElementById("Enrico")
+    let pfpS = document.getElementById("Salvatore")
 
 
-        themeCheckbox.addEventListener('change', function () {
-            if (this.checked) {
-                body.classList.add('dark-theme');
-                logo.src = "images/logos/logo-d.png";
-                pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
-                pfpS.src = "images/pfps/Salvo Lombardo-d.png";
+    themeCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            body.classList.add('dark-theme');
+            logo.src = "images/logos/logo-d.png";
+            pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
+            pfpS.src = "images/pfps/Salvo Lombardo-d.png";
 
-            } else {
-                body.classList.remove('dark-theme');
-                logo.src = "images/logos/logo.png";
-                pfpE.src = "images/pfps/Enrico Giuffrida.png";
-                pfpS.src = "images/pfps/Salvo Lombardo.png";
-            }
-        });
+        } else {
+            body.classList.remove('dark-theme');
+            logo.src = "images/logos/logo.png";
+            pfpE.src = "images/pfps/Enrico Giuffrida.png";
+            pfpS.src = "images/pfps/Salvo Lombardo.png";
+        }
     });
+});
 
 
 
@@ -117,7 +117,7 @@ function startSimulation() {
     time_quantum = parseInt(document.getElementById("quantodiTempo").value);
     clock = document.getElementById("Clockspeed").value;
     queue = [...processes_data];
-    while (queue[0].arrive > actual_time){
+    while (queue[0].arrive > actual_time) {
         actual_time++;
     }
     refreshCoda();
@@ -190,8 +190,8 @@ function FCFS() {
 }
 
 function priority() {
-    for (let i=0; i < queue.length; i++){
-        if (queue[i].arrive <= actual_time){
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
             temp.push(queue[i]);
             queue.splice(i, 1);
@@ -219,8 +219,8 @@ function priority() {
 }
 
 function SRTF() {
-    for (let i=0; i < queue.length; i++){
-        if (queue[i].arrive <= actual_time){
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
             temp.push(queue[i]);
             queue.splice(i, 1);
@@ -255,19 +255,19 @@ function addColumn(process) {
     `;
     for (let i = 0; i < processes_data.length; i++) {
         let rigaAttuale = processes_data[i];
-        let rigaAttual = document.getElementById(rigaAttuale.name);
-        if (rigaAttual.name === process.name) {
-            // Non entra mai qui -_-
-            rigaAttual.innerHTML += `
-                <td>boh</td>
-            `;
+        let rigaElemento = document.getElementById(rigaAttuale.name);
+        if (rigaAttuale.name === process.name) {
+            
+            rigaElemento.innerHTML += 
+                `<td style="background-color: rgba(255, 82, 82, 0.96);"></td>`
+            ;
         } else {
-            rigaAttual.innerHTML += `<td></td>`;
+            rigaElemento.innerHTML += `<td></td>`;
         }
     }
-    // Da fare: aggiornare la tabella con il processo che sta in esecuzione
+    
     updateLeftPosition();
 }
 
-// Initial call to set the position (in case of initial layout)
+
 updateLeftPosition();
