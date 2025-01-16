@@ -134,6 +134,8 @@ function startSimulation() {
 
 function stopSimulation() {
     clearInterval(intervallo);
+    let table = document.querySelector('.Tavoloprocessi');
+    table.innerHTML = "";
 }
 
 function refreshCoda() {

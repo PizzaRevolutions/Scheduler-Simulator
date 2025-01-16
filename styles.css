@@ -423,14 +423,17 @@ img[id="Salvatore"] {
     height: 60px;
     font-size: 17px;
     z-index: 1;
+    cursor: pointer;
 }
 
 #FormS .Buttons-2:hover button[id="Sx-button"] {
     margin-right: 120px;
+    cursor: pointer;
 }
 
 #FormS .Buttons-2:hover button[id="Dx-button"] {
     margin-left: 120px;
+    cursor: pointer;
 }
 
 #FormS button:disabled {
