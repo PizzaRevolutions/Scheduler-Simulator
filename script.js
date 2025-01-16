@@ -136,6 +136,11 @@ function stopSimulation() {
     clearInterval(intervallo);
     let table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = "";
+    actual_time = 0;
+    queue = [];
+    processes_data = [];
+    temp.length = 0;
+    first_time = true;
 }
 
 function refreshCoda() {
@@ -172,23 +177,35 @@ function roundRobin() {
 }
 
 function FCFS() {
-    if (queue.length > 0) {
-        const currentProcess = queue.shift();
-        if (currentProcess.arrive > actual_time) {
-            actual_time = currentProcess.arrive;
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i].arrive <= actual_time) {
+            console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            temp.push(queue[i]);
+            queue.splice(i, 1);
+            i--;
         }
+    }
+    temp.sort((a, b) => a.arrive - b.arrive);
+    refreshCoda();
+    if (temp.length > 0) {
+        if (first_time) {
+            actual_time--;
+            first_time = false;
+        }
+        const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
-        actual_time += executionTime;
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
+            actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+    } else if (queue.length > 0) {
+        actual_time++;
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
     }
-    refreshCoda();
 }
 
 function priority() {
@@ -210,13 +227,16 @@ function priority() {
         const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
-        actual_time += executionTime;
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
+            actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
     } else if (queue.length > 0) {
         actual_time++;
+    } else {
+        console.log("Simulazione completata.");
+        clearInterval(intervallo);
     }
 }
 
@@ -239,13 +259,16 @@ function SRTF() {
         const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
-        actual_time += executionTime;
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
+            actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
     } else if (queue.length > 0) {
         actual_time++;
+    } else {
+        console.log("Simulazione completata.");
+        clearInterval(intervallo);
     }
 }
 
@@ -253,7 +276,7 @@ function addColumn(process) {
     const intestazione = document.getElementById('processi');
     const riga = document.getElementById(`${process.name}`)
     intestazione.innerHTML += `
-        <th>${process.name}</th>
+        <th>${actual_time}</th>
     `;
     for (let i = 0; i < processes_data.length; i++) {
         let rigaAttuale = processes_data[i];
