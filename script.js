@@ -34,6 +34,7 @@ let queue = [];
 let processes_data = [];
 let time_quantum;
 let actual_time = 0;
+const temp = [];
 
 
 function getRandomInt(min, max) {
@@ -178,14 +179,17 @@ function FCFS() {
 }
 
 function priority() {
-    queue.sort((a, b) => b.priority - a.priority);
-    refreshCoda();
-
-    if (queue.length > 0) {
-        const currentProcess = queue.shift();
-        if (currentProcess.arrive > actual_time) {
-            actual_time = currentProcess.arrive;
+    for (let i=0; i < queue.length; i++){
+        if (queue[i].arrive >= actual_time){
+            temp.push(queue[i]);
+            queue.splice(i, 1);
+            console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
         }
+    }
+    temp.sort((a, b) => b.priority - a.priority);
+    refreshCoda();
+    if (temp.length > 0) {
+        const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
         actual_time += executionTime;
@@ -193,9 +197,6 @@ function priority() {
             addColumn(currentProcess);
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-    } else {
-        console.log("Simulazione completata.");
-        clearInterval(priority);
     }
 }
 
