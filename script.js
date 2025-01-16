@@ -35,6 +35,7 @@ let processes_data = [];
 let time_quantum;
 let actual_time = 0;
 const temp = [];
+let first_time = true;
 
 
 function getRandomInt(min, max) {
@@ -115,6 +116,9 @@ function startSimulation() {
     time_quantum = parseInt(document.getElementById("quantodiTempo").value);
     clock = document.getElementById("Clockspeed").value;
     queue = [...processes_data];
+    while (queue[0].arrive > actual_time){
+        actual_time++;
+    }
     refreshCoda();
     if (algoritmoSelezionato === "round robin") {
         setInterval(roundRobin, clock);
@@ -180,15 +184,20 @@ function FCFS() {
 
 function priority() {
     for (let i=0; i < queue.length; i++){
-        if (queue[i].arrive >= actual_time){
+        if (queue[i].arrive <= actual_time){
+            console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
             temp.push(queue[i]);
             queue.splice(i, 1);
-            console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            i--;
         }
     }
     temp.sort((a, b) => b.priority - a.priority);
     refreshCoda();
     if (temp.length > 0) {
+        if (first_time) {
+            actual_time--;
+            first_time = false;
+        }
         const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
