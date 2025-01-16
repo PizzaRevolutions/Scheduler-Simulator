@@ -36,6 +36,7 @@ let time_quantum;
 let actual_time = 0;
 const temp = [];
 let first_time = true;
+let intervallo = null;
 
 
 function getRandomInt(min, max) {
@@ -121,14 +122,18 @@ function startSimulation() {
     }
     refreshCoda();
     if (algoritmoSelezionato === "round robin") {
-        setInterval(roundRobin, clock);
+        intervallo = setInterval(roundRobin, clock);
     } else if (algoritmoSelezionato === "FCFS") {
-        setInterval(FCFS, clock);
+        intervallo = setInterval(FCFS, clock);
     } else if (algoritmoSelezionato === "priorita") {
-        setInterval(priority, clock);
+        intervallo = setInterval(priority, clock);
     } else if (algoritmoSelezionato === "SRTF") {
-        setInterval(SRTF, clock);
+        intervallo = setInterval(SRTF, clock);
     }
+}
+
+function stopSimulation() {
+    clearInterval(intervallo);
 }
 
 function refreshCoda() {
@@ -159,7 +164,7 @@ function roundRobin() {
         }
     } else {
         console.log("Simulazione completata.");
-        clearInterval(roundRobin);
+        clearInterval(intervallo);
     }
     refreshCoda();
 }
@@ -179,7 +184,7 @@ function FCFS() {
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
     } else {
         console.log("Simulazione completata.");
-        clearInterval(FCFS);
+        clearInterval(intervallo);
     }
     refreshCoda();
 }
