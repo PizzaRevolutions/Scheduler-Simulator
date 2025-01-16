@@ -126,6 +126,8 @@ function startSimulation() {
         setInterval(FCFS, clock);
     } else if (algoritmoSelezionato === "priorita") {
         setInterval(priority, clock);
+    } else if (algoritmoSelezionato === "SRTF") {
+        setInterval(SRTF, clock);
     }
 }
 
@@ -212,7 +214,32 @@ function priority() {
 }
 
 function SRTF() {
-    // Ordinare diversamente in partenza?
+    for (let i=0; i < queue.length; i++){
+        if (queue[i].arrive <= actual_time){
+            console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            temp.push(queue[i]);
+            queue.splice(i, 1);
+            i--;
+        }
+    }
+    temp.sort((a, b) => a.duration - b.duration);
+    refreshCoda();
+    if (temp.length > 0) {
+        if (first_time) {
+            actual_time--;
+            first_time = false;
+        }
+        const currentProcess = temp.shift();
+        const executionTime = currentProcess.duration;
+        console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+        actual_time += executionTime;
+        for (let i = 0; i < executionTime; i++) {
+            addColumn(currentProcess);
+        }
+        console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+    } else if (queue.length > 0) {
+        actual_time++;
+    }
 }
 
 function addColumn(process) {
