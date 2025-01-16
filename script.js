@@ -206,6 +206,8 @@ function priority() {
             addColumn(currentProcess);
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+    } else if (queue.length > 0) {
+        actual_time++;
     }
 }
 
