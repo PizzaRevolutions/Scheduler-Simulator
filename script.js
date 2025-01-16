@@ -141,7 +141,10 @@ function stopSimulation() {
     processes_data = [];
     temp.length = 0;
     first_time = true;
+    refreshCoda();
 }
+
+function tttw() { }
 
 function refreshCoda() {
     const coda = document.getElementById("Coda");
@@ -212,6 +215,7 @@ function FCFS() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        tttw();
     }
 }
 
