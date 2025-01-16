@@ -195,7 +195,7 @@ body {
 }
 
 .Profili:hover {
-    width: 360px;
+    width: 400px;
 }
 
 .Profili:hover img[id="Enrico"] {
@@ -352,7 +352,7 @@ img[id="Salvatore"] {
 }
 
 #FormS input {
-    width: 100%;
+    width: 70%;
     height: 40px;
     padding: 10px;
     border: 2.5px solid #ccc;
@@ -361,12 +361,13 @@ img[id="Salvatore"] {
     transition: 0.3 ease;
     background-color: var(--eightth-color);
     color: var(--nineth-color);
+    margin-left: 30%;
 
 }
 
 
 #FormS select {
-    width: 100%;
+    width: 70%;
     height: 40px;
     padding-left: 10px;
     border: 2.5px solid #ccc;
@@ -375,6 +376,7 @@ img[id="Salvatore"] {
     transition: 0.3 ease;
     background-color: var(--eightth-color);
     color: var(--nineth-color);
+    margin-left: 30%;
 
 }
 
@@ -388,13 +390,15 @@ img[id="Salvatore"] {
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: nowrap;
-    background-color: #747474;
+    background-color: #d3d3d3;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 #FormS .Buttons-2 {
     position: relative;
-    height: 80px;
-    width: 50%;
+    height: 60px;
+    width: 30%;
     display: flex;
     align-items: center;
     align-content: center;
@@ -402,15 +406,11 @@ img[id="Salvatore"] {
 }
 
 
-
-
-
-
 #FormS button {
     position: absolute;
     font-size: 15px;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50px;
     border: none;
     background-color: rgba(209, 0, 0, 0.96);
@@ -421,19 +421,19 @@ img[id="Salvatore"] {
 #FormS button[id="Center-button"] {
     width: 60px;
     height: 60px;
-    font-size: 17px;
     z-index: 1;
-    cursor: pointer;
 }
 
 #FormS .Buttons-2:hover button[id="Sx-button"] {
     margin-right: 120px;
-    cursor: pointer;
+    width: 40px;
+    height: 40px;
 }
 
 #FormS .Buttons-2:hover button[id="Dx-button"] {
     margin-left: 120px;
-    cursor: pointer;
+    width: 40px;
+    height: 40px;
 }
 
 #FormS button:disabled {
@@ -456,15 +456,18 @@ img[id="Salvatore"] {
     position: relative;
     width: 25%;
     height: 70vh;
-    border: 2.5px solid #747474;
-    background-color: #ffffff;
+    background: rgb(232, 232, 232);
+    background: linear-gradient(180deg, rgba(232, 232, 232, 1) 4%, rgb(247, 247, 247) 26%, rgb(247, 247, 247) 76%, rgba(232, 232, 232, 1) 96%);
     display: grid;
+    border-radius: 15px;
     gap: 0.25rem;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 30px 20px;
-    padding-bottom: 90px;
+    padding-bottom: 100px;
     padding-top: 80px;
+    align-content: space-evenly;
+    align-items: center;
 
 }
 
