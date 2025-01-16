@@ -148,32 +148,39 @@ function refreshCoda() {
     coda.innerHTML = temp.map(process => process.name).join(', ');
 }
 function roundRobin() {
-    if (queue.length > 0) {
-        const currentProcess = queue.shift();
-        if (currentProcess.arrive > actual_time) {
-            actual_time = currentProcess.arrive;
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i].arrive <= actual_time) {
+            console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            temp.push(queue[i]);
+            queue.splice(i, 1);
+            i--;
         }
+    }
+    refreshCoda();
+    if (temp.length > 0) {
+        if (first_time && actual_time === 0) {
+            actual_time--;
+            first_time = false;
+        }
+        const currentProcess = temp.shift();
         const executionTime = Math.min(time_quantum, currentProcess.duration);
-
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
-
-        currentProcess.duration -= executionTime;
-        actual_time += executionTime;
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
+            actual_time++;
         }
-
         if (currentProcess.duration > 0) {
-            queue.push(currentProcess); // Rimetti il processo in coda se non è finito
+            currentProcess.duration -= executionTime;
+            temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-            // Qui puoi aggiungere la logica per rimuovere il processo dalla visualizzazione
         }
+    } else if (queue.length > 0) {
+        actual_time++;
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
     }
-    refreshCoda();
 }
 
 function FCFS() {
@@ -188,7 +195,7 @@ function FCFS() {
     temp.sort((a, b) => a.arrive - b.arrive);
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time) {
+        if (first_time && actual_time === 0) {
             actual_time--;
             first_time = false;
         }
@@ -220,7 +227,7 @@ function priority() {
     temp.sort((a, b) => b.priority - a.priority);
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time) {
+        if (first_time && actual_time === 0) {
             actual_time--;
             first_time = false;
         }
@@ -252,7 +259,7 @@ function SRTF() {
     temp.sort((a, b) => a.duration - b.duration);
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time) {
+        if (first_time && actual_time === 0) {
             actual_time--;
             first_time = false;
         }
