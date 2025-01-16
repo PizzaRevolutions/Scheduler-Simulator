@@ -138,7 +138,7 @@ function stopSimulation() {
 
 function refreshCoda() {
     const coda = document.getElementById("Coda");
-    coda.innerHTML = queue.map(process => process.name).join(', ');
+    coda.innerHTML = temp.map(process => process.name).join(', ');
 }
 function roundRobin() {
     if (queue.length > 0) {
