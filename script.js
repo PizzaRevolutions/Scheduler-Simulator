@@ -88,8 +88,8 @@ function addProcesses() {
                 <td>${process.arrive}</td>
                 <td>${process.duration}</td>
                 <td>${process.priority}</td>
-                <td></td>
-                <td></td>
+                <td id="ttt${process.name}"></td>
+                <td id="twt${process.name}"></td>
             </tr>
         `;
         table.innerHTML += newRow;
@@ -144,7 +144,21 @@ function stopSimulation() {
     refreshCoda();
 }
 
-function tttw() { }
+function tttw(currentProcess) {
+    console.log(currentProcess);
+    console.log(actual_time);
+    console.log(currentProcess.arrive);
+    let tt = actual_time - currentProcess.arrive;
+    let tw = tt - currentProcess.duration;
+    console.log(tt);
+    console.log(tw);
+    let riga = document.getElementById(`ttt${currentProcess.name}`);
+    riga.innerHTML = tt;
+    let riga2 = document.getElementById(`twt${currentProcess.name}`);
+    riga2.innerHTML = tw;
+    tt = 0;
+    tw = 0;
+}
 
 function refreshCoda() {
     const coda = document.getElementById("Coda");
@@ -177,6 +191,7 @@ function roundRobin() {
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+            tttw(currentProcess);
         }
     } else if (queue.length > 0) {
         actual_time++;
@@ -210,12 +225,12 @@ function FCFS() {
             actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+        tttw(currentProcess);
     } else if (queue.length > 0) {
         actual_time++;
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
-        tttw();
     }
 }
 
@@ -243,6 +258,7 @@ function priority() {
             actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+        tttw(currentProcess);
     } else if (queue.length > 0) {
         actual_time++;
     } else {
@@ -275,7 +291,8 @@ function SRTF() {
             actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-    } else if (queue.length > 0) {
+        tttw(currentProcess);
+        } else if (queue.length > 0) {
         actual_time++;
     } else {
         console.log("Simulazione completata.");
@@ -293,15 +310,13 @@ function addColumn(process) {
         let rigaAttuale = processes_data[i];
         let rigaElemento = document.getElementById(rigaAttuale.name);
         if (rigaAttuale.name === process.name) {
-            
-            rigaElemento.innerHTML += 
+            rigaElemento.innerHTML +=
                 `<td style="background-color: rgba(255, 82, 82, 0.96);"></td>`
             ;
         } else {
             rigaElemento.innerHTML += `<td></td>`;
         }
     }
-    
     updateLeftPosition();
 }
 

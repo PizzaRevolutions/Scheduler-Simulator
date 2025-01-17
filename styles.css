@@ -416,6 +416,7 @@ img[id="Salvatore"] {
     background-color: rgba(209, 0, 0, 0.96);
     color: white;
     transition: 0.3s ease;
+    cursor: pointer;
 }
 
 #FormS button[id="Center-button"] {
