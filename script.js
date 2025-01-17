@@ -152,7 +152,13 @@ function startSimulation() {
     queue = [...processes_data];
     console.log(queue);
     console.log(processes_data);
-    while (queue[0].arrive > actual_time) {
+    let min = 0;
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i].arrive < min) {
+            min = queue[i].arrive;
+        }
+    }
+    while (min > actual_time) {
         actual_time++;
     }
     refreshCoda();
