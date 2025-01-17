@@ -66,6 +66,7 @@ function addProcesses() {
         process.name = `P${index}`;
     });
     processes_data = [...processes]; // Save the generated processes
+    console.log(processes_data);
 
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
@@ -149,6 +150,8 @@ function startSimulation() {
     time_quantum = parseInt(document.getElementById("quantodiTempo").value);
     clock = document.getElementById("Clockspeed").value;
     queue = [...processes_data];
+    console.log(queue);
+    console.log(processes_data);
     while (queue[0].arrive > actual_time) {
         actual_time++;
     }
@@ -177,11 +180,12 @@ function stopSimulation() {
 
 function tttw(currentProcess) {
     let tt = actual_time - currentProcess.arrive;
-    let tw = tt - currentProcess.duration;
+    let tw = tt - currentProcess.temp;
     let riga = document.getElementById(`ttt${currentProcess.name}`);
     riga.innerHTML = tt;
     let riga2 = document.getElementById(`twt${currentProcess.name}`);
     riga2.innerHTML = tw;
+    console.log("Actual time: " + actual_time + "Arrive: " + currentProcess.arrive + "TT: " + tt + " TW: " + tw);
     tt = 0;
     tw = 0;
 }
@@ -194,6 +198,7 @@ function roundRobin() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -208,7 +213,7 @@ function roundRobin() {
             addColumn(currentProcess);
             actual_time++;
         }
-        if (currentProcess.duration > 0) {
+        if (currentProcess.duration > 0 && currentProcess.duration > executionTime) {
             currentProcess.duration -= executionTime;
             temp.push(currentProcess);
         } else {
