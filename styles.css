@@ -258,8 +258,8 @@ img[id="Salvatore"] {
 
 #navbar li a:hover,
 #navbar li a.active {
-    color: rgba(209, 0, 0, 0.96);
-    text-shadow: 0px 0px 2px rgb(196 40 40 / 96%);
+    color: rgba(0, 0, 0, 0.96);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
     font-weight: 700;
 }
 
@@ -341,8 +341,30 @@ img[id="Salvatore"] {
 }
 
 
+#FormS .Title {
+    position: absolute;
+    height: 80px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#FormS .Title span[class="Title-container"] {
+    padding-top: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
+
+}
+
+
 #FormS label {
-    color: var(--sixth-color);
+    color: #5e5e5e;
     font-size: 18px;
     text-align: left;
 
@@ -353,12 +375,13 @@ img[id="Salvatore"] {
     height: 40px;
     padding: 10px;
     border: 2.5px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 15px;
     transition: 0.3 ease;
     background-color: var(--eightth-color);
-    color: var(--nineth-color);
+    color: #5e5e5e;
     margin-left: 30%;
+
 
 }
 
@@ -366,14 +389,16 @@ img[id="Salvatore"] {
 #FormS select {
     width: 70%;
     height: 40px;
-    padding-left: 10px;
+
     border: 2.5px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 15px;
     transition: 0.3 ease;
     background-color: var(--eightth-color);
-    color: var(--nineth-color);
+    color: #5e5e5e;
     margin-left: 30%;
+    appearance: none;
+    text-align: center;
 
 }
 
@@ -402,6 +427,18 @@ img[id="Salvatore"] {
     justify-content: space-evenly;
 }
 
+#FormS .Buttons-3 {
+    position: absolute;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 
 #FormS button {
     position: absolute;
@@ -414,6 +451,34 @@ img[id="Salvatore"] {
     color: white;
     transition: 0.3s ease;
     cursor: pointer;
+}
+
+#FormS button[class="Alert"] {
+    margin-left: 90%;
+    margin-right: 10%;
+    background: none;
+    font-size: 20px;
+}
+
+
+#FormS button[class="Sliders"] {
+    margin-right: 90%;
+    margin-left: 10%;
+    background: none;
+    font-size: 20px;
+
+}
+
+#FormS button[class="Sliders"]:hover {
+    background: none;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.356);
+    box-shadow: none;
+}
+
+#FormS button[class="Alert"]:hover {
+    background: none;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.356);
+    box-shadow: none;
 }
 
 #FormS button[id="Center-button"] {
