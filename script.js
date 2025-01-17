@@ -1,3 +1,4 @@
+modifyed();
 //Darkmode
 document.addEventListener('DOMContentLoaded', function () {
     const themeCheckbox = document.getElementById('checkbox');
@@ -116,6 +117,53 @@ function updateLeftPosition() {
     const sommaLarghezze = larghezza1 + larghezza2;
 
     elemento3.style.left = sommaLarghezze + 'px';
+}
+
+function modifyed() {
+    let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
+    console.log(algoritmoSelezionato);
+
+    let preemtive = document.getElementById("check-24 preemtive");
+    let preemtiveLabel = document.getElementById("preemtive-label");
+
+    let quantum = document.getElementById("quantodiTempo");
+    let quantumLabel = document.getElementById("quantodiTempo-label");
+
+    let prioritaMassima = document.getElementById("Priorita");
+    let prioritaLabel = document.getElementById("Priorita-label");
+
+    if (algoritmoSelezionato === "SRTF") {
+        quantumLabel.style.display = "none";
+        quantum.style.display = "none";
+
+        prioritaLabel.style.display = "none";
+        prioritaMassima.style.display = "none";
+
+        preemtiveLabel.style.display = "block";
+        preemtive.style.display = "block";
+
+    } else if (algoritmoSelezionato === "round robin") {
+        preemtiveLabel.style.display = "none";
+        preemtive.style.display = "none";
+        quantumLabel.style.display = "block";
+        quantum.style.display = "block";
+        prioritaLabel.style.display = "none";
+        prioritaMassima.style.display = "none";
+    } else if (algoritmoSelezionato === "priorita") {
+        preemtiveLabel.style.display = "block";
+        preemtive.style.display = "block";
+        quantumLabel.style.display = "none";
+        quantum.style.display = "none";
+        prioritaLabel.style.display = "block";
+        prioritaMassima.style.display = "block";
+    } else if (algoritmoSelezionato === "FCFS") {
+        preemtiveLabel.style.display = "none";
+        preemtive.style.display = "none";
+        quantumLabel.style.display = "none";
+        quantum.style.display = "none";
+        prioritaLabel.style.display = "none";
+        prioritaMassima.style.display = "none";
+    }
 }
 
 function modifyProcess(processoo) {

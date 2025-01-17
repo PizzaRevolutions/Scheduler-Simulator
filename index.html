@@ -74,26 +74,25 @@
             <label for="durataMassima">Max Duration:</label>
             <input type="number" id="durataMassima" value="10">
 
-            <label for="quantodiTempo">Quantum:</label>
+            <label for="quantodiTempo" id="quantodiTempo-label">Quantum:</label>
             <input type="number" id="quantodiTempo" value="2">
 
             <label for="Clockspeed">Clock:</label>
             <input type="number" id="Clockspeed" value="1000">
 
-            <label for="Priorita">Max Priority:</label>
+            <label for="Priorita" id="Priorita-label">Max Priority:</label>
             <input type="number" id="Priorita" value="10">
 
 
-            <label for="Tipodialgoritmo">Algorithm type:</label>
-            <select name="Tipodialgoritmo" id="Tipodialgoritmo">
+            <label for="Tipodialgoritmo" id="Tipodialgoritmo-label">Algorithm type:</label>
+            <select name="Tipodialgoritmo" id="Tipodialgoritmo" onchange="modifyed()">
                 <option value="round robin">Round Robin</option>
                 <option value="FCFS">FCFS</option>
                 <option value="priorita">Priority</option>
                 <option value="SRTF">SRTF</option>
             </select>
-            
 
-            <label for="preemtive">Preemtive:</label>
+            <label for="preemtive" id="preemtive-label">Preemtive:</label>
             <div class="checkbox-wrapper-24">
                 <input type="checkbox" id="check-24 preemtive" name="check">
             </div>
