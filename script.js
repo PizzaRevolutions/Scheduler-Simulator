@@ -71,7 +71,7 @@ function addProcesses() {
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
         <tr id="processi">
-            <th>Azioni rapide</th>
+            <th><i class="fa-solid fa-gear"></i></th>
             <th class="Name">Name</th>
             <th class="Arrive">Arrive</th>
             <th class="Duration">Duration</th>
