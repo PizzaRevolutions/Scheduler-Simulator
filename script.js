@@ -35,7 +35,6 @@ let processes_data = [];
 let time_quantum;
 let actual_time = 0;
 const temp = [];
-let first_time = true;
 let intervallo = null;
 
 
@@ -173,7 +172,6 @@ function stopSimulation() {
     queue = [];
     processes_data = [];
     temp.length = 0;
-    first_time = true;
     refreshCoda();
 }
 
@@ -203,10 +201,6 @@ function roundRobin() {
     }
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time && actual_time === 0) {
-            actual_time--;
-            first_time = false;
-        }
         const currentProcess = temp.shift();
         const executionTime = Math.min(time_quantum, currentProcess.duration);
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
@@ -241,10 +235,6 @@ function FCFS() {
     temp.sort((a, b) => a.arrive - b.arrive);
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time && actual_time === 0) {
-            actual_time--;
-            first_time = false;
-        }
         const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
@@ -274,10 +264,6 @@ function priority() {
     temp.sort((a, b) => b.priority - a.priority);
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time && actual_time === 0) {
-            actual_time--;
-            first_time = false;
-        }
         const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
@@ -307,10 +293,6 @@ function SRTF() {
     temp.sort((a, b) => a.duration - b.duration);
     refreshCoda();
     if (temp.length > 0) {
-        if (first_time && actual_time === 0) {
-            actual_time--;
-            first_time = false;
-        }
         const currentProcess = temp.shift();
         const executionTime = currentProcess.duration;
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
