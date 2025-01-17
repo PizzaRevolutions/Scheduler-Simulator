@@ -71,6 +71,7 @@ function addProcesses() {
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
         <tr id="processi">
+            <th>Azioni rapide</th>
             <th class="Name">Name</th>
             <th class="Arrive">Arrive</th>
             <th class="Duration">Duration</th>
@@ -84,6 +85,11 @@ function addProcesses() {
     processes.forEach(process => {
         const newRow = `
             <tr id="${process.name}">
+                <td>
+                    <button onclick=modifyProcess("${process.name}")>
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                </td>
                 <td>${process.name}</td>
                 <td>${process.arrive}</td>
                 <td>${process.duration}</td>
@@ -110,6 +116,33 @@ function updateLeftPosition() {
     const sommaLarghezze = larghezza1 + larghezza2;
 
     elemento3.style.left = sommaLarghezze + 'px';
+}
+
+function modifyProcess(processoo) {
+    clearInterval(intervallo);
+    for (let i = 0; i < processes_data.length; i++) {
+        if (processes_data[i].name === processoo) {
+            console.log(processes_data[i]);
+            let arrivo = prompt("Inserisci il nuovo arrivo");
+            let durata = prompt("Inserisci la nuova durata");
+            let priorita = prompt("Inserisci la nuova priorita");
+            processes_data[i].arrive = arrivo;
+            processes_data[i].duration = durata;
+            processes_data[i].priority = priorita;
+            let row = document.getElementById(`${processoo}`);
+            row.innerHTML = `
+                <td><button onclick=modifyProcess("${processoo}")>
+                    <i class="fa-solid fa-pen"></i>
+                </button></td>
+                <td>${processoo}</td>
+                <td>${arrivo}</td>
+                <td>${durata}</td>
+                <td>${priorita}</td>
+                <td id="ttt${processoo}"></td>
+                <td id="twt${processoo}"></td>
+            `;
+        }
+    }
 }
 
 function startSimulation() {
@@ -145,13 +178,8 @@ function stopSimulation() {
 }
 
 function tttw(currentProcess) {
-    console.log(currentProcess);
-    console.log(actual_time);
-    console.log(currentProcess.arrive);
     let tt = actual_time - currentProcess.arrive;
     let tw = tt - currentProcess.duration;
-    console.log(tt);
-    console.log(tw);
     let riga = document.getElementById(`ttt${currentProcess.name}`);
     riga.innerHTML = tt;
     let riga2 = document.getElementById(`twt${currentProcess.name}`);
