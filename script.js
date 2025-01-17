@@ -265,9 +265,9 @@ function priority() {
     refreshCoda();
     if (temp.length > 0) {
         const currentProcess = temp.shift();
-        let executionTime = 1;
+        let executionTime = 0;
         let preemtive = document.getElementById("preemtive").checked;
-        if (preemtive) {
+        if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
         } else {
             executionTime = currentProcess.duration;
@@ -307,7 +307,7 @@ function SRTF() {
         const currentProcess = temp.shift();
         let preemtive = document.getElementById("preemtive").checked;
         let executionTime = 1;
-        if (preemtive) {
+        if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
         } else {
             executionTime = currentProcess.duration;
