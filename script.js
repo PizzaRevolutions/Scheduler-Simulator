@@ -265,14 +265,25 @@ function priority() {
     refreshCoda();
     if (temp.length > 0) {
         const currentProcess = temp.shift();
-        const executionTime = currentProcess.duration;
+        let executionTime = 1;
+        let preemtive = document.getElementById("preemtive").checked;
+        if (preemtive) {
+            executionTime = 1;
+        } else {
+            executionTime = currentProcess.duration;
+        }
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
             actual_time++;
         }
-        console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-        tttw(currentProcess);
+        if (preemtive && currentProcess.duration > 0) {
+            currentProcess.duration -= executionTime;
+            temp.push(currentProcess);
+        } else {
+            console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+            tttw(currentProcess);
+        }
     } else if (queue.length > 0) {
         actual_time++;
     } else {
@@ -294,14 +305,25 @@ function SRTF() {
     refreshCoda();
     if (temp.length > 0) {
         const currentProcess = temp.shift();
-        const executionTime = currentProcess.duration;
+        let preemtive = document.getElementById("preemtive").checked;
+        let executionTime = 1;
+        if (preemtive) {
+            executionTime = 1;
+        } else {
+            executionTime = currentProcess.duration;
+        }
         console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
             actual_time++;
         }
-        console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-        tttw(currentProcess);
+        if (preemtive && currentProcess.duration > 0) {
+            currentProcess.duration -= executionTime;
+            temp.push(currentProcess);
+        } else {
+            console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+            tttw(currentProcess);
+        }
         } else if (queue.length > 0) {
         actual_time++;
     } else {
