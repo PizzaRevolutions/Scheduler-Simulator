@@ -331,10 +331,8 @@ function SRTF() {
         clearInterval(intervallo);
     }
 }
-
 function addColumn(process) {
     const intestazione = document.getElementById('processi');
-    const riga = document.getElementById(`${process.name}`)
     intestazione.innerHTML += `
         <th>${actual_time}</th>
     `;
