@@ -132,6 +132,9 @@ function modifyed() {
     let prioritaMassima = document.getElementById("Priorita");
     let prioritaLabel = document.getElementById("Priorita-label");
 
+    let preemtiveStyle = document.getElementById("sphere")
+    let preemtiveStyle1 = document.getElementById("check")
+
     if (algoritmoSelezionato === "SRTF") {
         quantumLabel.style.display = "none";
         quantum.style.display = "none";
@@ -142,6 +145,12 @@ function modifyed() {
         preemtiveLabel.style.display = "block";
         preemtive.style.display = "block";
 
+        preemtiveStyle.style.opacity= "100%";
+        preemtiveStyle1.style.opacity= "100%";
+        preemtiveStyle.style.transition= " 0.2s linear";
+        preemtiveStyle1.style.transition= "opacity 0.2s linear";
+
+
     } else if (algoritmoSelezionato === "round robin") {
         preemtiveLabel.style.display = "none";
         preemtive.style.display = "none";
@@ -149,6 +158,13 @@ function modifyed() {
         quantum.style.display = "block";
         prioritaLabel.style.display = "none";
         prioritaMassima.style.display = "none";
+
+        preemtiveStyle.style.opacity= "0";
+        preemtiveStyle1.style.opacity= "0";
+        preemtiveStyle.style.transition= "none";
+        preemtiveStyle1.style.transition= "none";
+        
+
     } else if (algoritmoSelezionato === "priorita") {
         preemtiveLabel.style.display = "block";
         preemtive.style.display = "block";
@@ -156,6 +172,12 @@ function modifyed() {
         quantum.style.display = "none";
         prioritaLabel.style.display = "block";
         prioritaMassima.style.display = "block";
+
+        preemtiveStyle.style.opacity= "100%";
+        preemtiveStyle1.style.opacity= "100%";
+        preemtiveStyle.style.transition= " 0.2s linear";
+        preemtiveStyle1.style.transition= "opacity 0.2s linear";
+
     } else if (algoritmoSelezionato === "FCFS") {
         preemtiveLabel.style.display = "none";
         preemtive.style.display = "none";
@@ -163,6 +185,11 @@ function modifyed() {
         quantum.style.display = "none";
         prioritaLabel.style.display = "none";
         prioritaMassima.style.display = "none";
+
+        preemtiveStyle.style.opacity= "0";
+        preemtiveStyle1.style.opacity= "0";
+        preemtiveStyle.style.transition= "none";
+        preemtiveStyle1.style.transition= "none";
     }
 }
 

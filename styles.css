@@ -269,7 +269,7 @@ img[id="Salvatore"] {
     opacity: 0;
 }
 
-.checkbox-label {
+#header .checkbox-label {
     background-color: #111;
     width: 50px;
     height: 26px;
@@ -282,15 +282,15 @@ img[id="Salvatore"] {
     align-items: center;
 }
 
-.fa-moon {
+#header .fa-moon {
     color: #f1c40f;
 }
 
-.fa-sun {
+#header .fa-sun {
     color: #f39c12;
 }
 
-.checkbox-label .ball {
+#header .checkbox-label .ball {
     background-color: #fff;
     width: 22px;
     height: 22px;
@@ -302,11 +302,11 @@ img[id="Salvatore"] {
 }
 
 
-.checkbox:checked+.checkbox-label .ball {
+#header .checkbox:checked+.checkbox-label .ball {
     transform: translateX(24px);
 }
 
-.checkbox-label .ball:hover {
+#header .checkbox-label .ball:hover {
     transition: 0.3s ease;
     background-color: rgba(238, 0, 0, 0.96);
     ;
@@ -339,6 +339,13 @@ img[id="Salvatore"] {
 
 }
 
+#FormS .banner {
+    position: absolute;
+    width: 80px;
+    left: 10%;
+    top: -2%;
+}
+
 
 #FormS .Title {
     position: absolute;
@@ -352,6 +359,8 @@ img[id="Salvatore"] {
     flex-direction: column;
     align-items: center;
 }
+
+
 
 #FormS .Title span[class="Title-container"] {
     padding-top: 10px;
@@ -401,6 +410,59 @@ img[id="Salvatore"] {
 
 }
 
+#FormS .checkbox-container {
+    position: relative;
+    width: 70%;
+    margin-left: 30%;
+}
+
+#FormS input[id="check-24 preemtive"] {
+    position: relative;
+    opacity: 0%;
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    cursor: pointer;
+    z-index: 3;
+}
+
+#FormS .sphere {
+    position: absolute;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #5e5e5e;
+    z-index: 1;
+    
+}
+
+#FormS span.check {
+    position: absolute;
+    font-size: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: rgb(247, 247, 247) ;
+    
+}
+
+#FormS input[id="check-24 preemtive"]:checked + .sphere {
+    background-color: black;
+}
+
+#FormS input[id="check-24 preemtive"]:checked + .sphere + span.check {
+    opacity: 1;
+}
+
+
+
+
+
 #FormS .Buttons {
     position: absolute;
     left: 0%;
@@ -414,6 +476,7 @@ img[id="Salvatore"] {
     background-color: #d3d3d3;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    z-index: 1;
 }
 
 #FormS .Buttons-2 {
@@ -424,6 +487,7 @@ img[id="Salvatore"] {
     align-items: center;
     align-content: center;
     justify-content: space-evenly;
+    z-index: 2;
 }
 
 #FormS .Buttons-3 {
