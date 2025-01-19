@@ -240,6 +240,9 @@ function saveProcess(processoo, i) {
     let arrivo = document.getElementById(`arrivoInput`).value;
     let durata = document.getElementById(`durataInput`).value;
     let priorita = document.getElementById(`prioritaInput`).value;
+    if (arrivo === "" || durata === "" || priorita === "") {
+        return;
+    }
     processes_data[i].arrive = arrivo;
     processes_data[i].duration = durata;
     processes_data[i].priority = priorita;
