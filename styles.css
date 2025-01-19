@@ -8,7 +8,7 @@
 
     --section1-color: rgb(255 255 255 / 100%);
 
-    /* undefined --secondary-color: #F7F7F7;*/
+    --spans-color: #272727;
 
     --headings-color: #040404;
 
@@ -16,7 +16,9 @@
 
     --headershadow-color: rgba(0, 0, 0, 0.06);
 
-    /* undefined --fifth-color: rgb(255 255 255 / 100%);*/
+    --container1-color: rgb(238, 238, 238);
+
+    --container1dec-color: #d3d3d3;
 
     --labels-color: rgb(0, 0, 0);
 
@@ -27,7 +29,6 @@
     --textsinlabel-color: rgba(56, 56, 56, 0.753);
 
 
-
 }
 
 .dark-theme {
@@ -35,7 +36,7 @@
 
     --section1-color: rgb(40, 40, 40);
 
-    /*--secondary-color: #080808;*/
+    --spans-color: #ececec;
 
     --headings-color: #fbfbfb;
 
@@ -43,7 +44,9 @@
 
     --headershadow-color: rgba(56, 56, 56, 0.973);
 
-    /*--fifth-color: rgb(27, 27, 27);*/
+    --container1-color: rgb(39, 39, 39);
+
+    --container1dec-color: #2c2c2c;
 
     --labels-color: rgb(246, 246, 246);
 
@@ -66,63 +69,93 @@
     font-family: 'Jost', sans-serif;
 }
 
+body {
+    width: 100%;
+    background-color: var(--body-color);
+}
+
 h1 {
     font-size: 50px;
     line-height: 64px;
     color: var(--headings-color);
+    user-select: none;
 }
 
 h2 {
     font-size: 46px;
     line-height: 54px;
     color: var(--headings-color);
+    user-select: none;
+
 }
 
 h3 {
+    user-select: none;
     color: var(--headings-color);
 }
 
 h4 {
     font-size: 20px;
     color: var(--headings-color);
+    user-select: none;
+
 }
 
 h6 {
     font-weight: 700;
     font-size: 12px;
     color: var(--headings-color);
+    user-select: none;
+
 }
 
 p {
     font-size: 17px;
     color: var(--paragraphs-color);
     margin: 15px 0 20px 0;
+    user-select: none;
+
 }
 
 a {
     text-decoration: none;
-    color: rgba(45, 172, 210, 0.96);
     transition: 0.3 ease;
+    user-select: none;
+    color: var(--spans-color);
+
 }
 
-a:hover {
-    color: rgba(31, 116, 142, 0.96);
+th,
+td {
+    user-select: none;
+
 }
 
-a::after {
-    color: rgba(45, 172, 210, 0.96);
-}
 
 hr {
     border: none;
     border-top: 0.5px solid #404040;
     margin-bottom: 30px;
     margin-top: 20px;
+    user-select: none;
+
 }
 
 label {
     font-weight: 600;
     margin-left: 2vh;
+    user-select: none;
+
+}
+
+span {
+    user-select: none;
+    color: var(--spans-color);
+}
+
+
+img {
+    user-select: none;
 }
 
 .section-p1 {
@@ -133,10 +166,7 @@ label {
     margin: 40px 0;
 }
 
-body {
-    width: 100%;
-    background-color: var(--body-color);
-}
+
 
 
 
@@ -241,6 +271,10 @@ img[id="Salvatore"] {
 
 }
 
+#navbar span {
+    color: var(--spans-color);
+}
+
 #navbar li {
     list-style: none;
     padding: 0 15px;
@@ -251,13 +285,12 @@ img[id="Salvatore"] {
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
-    color: var(--third-color);
     transition: 0.3s ease;
 }
 
 #navbar li a:hover,
 #navbar li a.active {
-    color: rgba(0, 0, 0, 0.96);
+    color: var(--spans-color);
     text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
     font-weight: 700;
 }
@@ -461,48 +494,6 @@ img[id="Salvatore"] {
 
 
 
-
-
-#FormS .Buttons {
-    position: absolute;
-    left: 0%;
-    bottom: 0%;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: nowrap;
-    background-color: #d3d3d3;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    z-index: 1;
-}
-
-#FormS .Buttons-2 {
-    position: relative;
-    height: 60px;
-    width: 30%;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: space-evenly;
-    z-index: 2;
-}
-
-#FormS .Buttons-3 {
-    position: absolute;
-    height: 60px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-
 #FormS button {
     position: absolute;
     font-size: 15px;
@@ -521,6 +512,7 @@ img[id="Salvatore"] {
     margin-right: 10%;
     background: none;
     font-size: 20px;
+    color: var(--headings-color);
 }
 
 
@@ -529,6 +521,7 @@ img[id="Salvatore"] {
     margin-left: 10%;
     background: none;
     font-size: 20px;
+    color: var(--headings-color);
 
 }
 
@@ -586,13 +579,11 @@ img[id="Salvatore"] {
     grid-template-rows: auto auto;
 }
 
+
 #FormS .container {
+    background-color: var(--container1-color);
     position: relative;
-    min-width: 400px;
-    max-width: 450px;
     height: 70vh;
-    background: rgb(232, 232, 232);
-    background: linear-gradient(180deg, rgba(232, 232, 232, 1) 4%, rgb(247, 247, 247) 26%, rgb(247, 247, 247) 76%, rgba(232, 232, 232, 1) 96%);
     display: grid;
     grid-row: 1 / 3;
     border-radius: 15px;
@@ -605,17 +596,94 @@ img[id="Salvatore"] {
     align-content: space-evenly;
     align-items: center;
     margin-right: 10px;
+    z-index: 0;
 
 }
+
+#FormS .Buttons {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: var(--container1dec-color);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 1;
+}
+
+#FormS .Buttons-2 {
+    position: relative;
+    height: 60px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+    z-index: 3;
+}
+
+#FormS .Buttons-3 {
+    position: absolute;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#FormS .Legend1 {
+    padding: 10px 15px;
+    position: absolute;
+    z-index: 4;
+    width: fit-content;
+    background-color: rgba(232, 232, 232, 1);
+    border: 2px solid black;
+    height: fit-content;
+    left: 15%;
+    border-radius: 5px;
+    display: none;
+    user-select: none;
+}
+
+#FormS .Legend2 {
+    padding: 10px 15px;
+    position: absolute;
+    z-index: 5;
+    width: fit-content;
+    background-color: rgba(232, 232, 232, 1);
+    border: 2px solid black;
+    height: fit-content;
+    right: 15%;
+    border-radius: 5px;
+    display: none;
+    user-select: none;
+}
+
 
 #FormS .container2 {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 10px;
 }
 
-#FormS .container2 label {
+#FormS .container2 span {
     margin-right: 10px;
+    font-size: 22px;
+    text-align: left;
+    display: flex;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
 }
 
 #FormS .container2 table {
@@ -628,7 +696,7 @@ img[id="Salvatore"] {
 
 #FormS .container3 {
     padding: 2px 10px;
-    width: 140vh;
+    width: 100%;
     height: 61.5vh;
     overflow: auto;
 }
@@ -636,14 +704,16 @@ img[id="Salvatore"] {
 #FormS .container3 .modify {
     all: unset;
     cursor: pointer;
-    transition: opacity 0.3s ease; /* Adding transition for opacity */
-    opacity: 0; /* Initially invisible */
+    transition: opacity 0.3s ease;
+    opacity: 0;
+
 }
 
 #FormS .container3 .modify:hover {
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.548);
     cursor: pointer;
-    opacity: 1; /* Make it fully visible on hover */
+    opacity: 1;
+  
 }
 
 #FormS .container3 .mod-th,
@@ -659,19 +729,6 @@ img[id="Salvatore"] {
 
 
 
-
-
-
-
-
-
-#FormS .container2 label {
-    color: var(--sixth-color);
-    font-size: 22px;
-    text-align: left;
-    display: flex;
-    padding: 20px;
-}
 
 
 #FormS .Tavoloprocessi {
