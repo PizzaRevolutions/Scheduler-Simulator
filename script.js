@@ -86,7 +86,7 @@ function addProcesses() {
         const newRow = `
             <tr id="${process.name}">
                 <td class="mod-td">
-                    <button class="modify" onclick=modifyProcess("${process.name}")>
+                    <button class="modify" onclick=modifyProcess("${process.name}" id="modify${process.name}")>
                         <i name="icons" class="fa-solid fa-pen"></i>
                     </button>
                 </td>
@@ -218,7 +218,7 @@ function modifyProcess(processoo) {
             processes_data[i].priority = priorita;
             let row = document.getElementById(`${processoo}`);
             row.innerHTML = `
-                <td class="mod-td"><button class="modify" onclick=modifyProcess("${processoo}")>
+                <td class="mod-td"><button class="modify" onclick=modifyProcess("${processoo}" id="modify${processoo}")>
                     <i name="icons" class="fa-solid fa-pen"></i>
                 </button></td>
                 <td>${processoo}</td>
@@ -243,6 +243,8 @@ function startSimulation() {
         if (queue[i].arrive < min) {
             min = queue[i].arrive;
         }
+        let modify = document.getElementById(`modify${queue[i].name}`);
+        modify.style.display = "none";
     }
     while (min > actual_time) {
         actual_time++;
