@@ -67,7 +67,6 @@ function addProcesses() {
         process.name = `P${index}`;
     });
     processes_data = [...processes]; // Save the generated processes
-    console.log(processes_data);
 
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
@@ -128,8 +127,6 @@ function updateLeftPosition() {
 
 function modifyed() {
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
-    console.log(algoritmoSelezionato);
-
     let preemtive = document.getElementById("check-24 preemtive");
     let preemtiveLabel = document.getElementById("preemtive-label");
 
@@ -233,8 +230,6 @@ function startSimulation() {
     time_quantum = parseInt(document.getElementById("quantodiTempo").value);
     clock = document.getElementById("Clockspeed").value;
     queue = [...processes_data];
-    console.log(queue);
-    console.log(processes_data);
     let min = 0;
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive < min) {
@@ -268,6 +263,7 @@ function stopSimulation() {
 }
 
 function tttw(currentProcess) {
+    console.log("Tempo attuale: " + actual_time + " Arrivo: " + currentProcess.arrive + " Durata: " + currentProcess.temp);
     let tt = actual_time - currentProcess.arrive;
     let tw = tt - currentProcess.temp;
     let riga = document.getElementById(`ttt${currentProcess.name}`);
@@ -327,6 +323,7 @@ function FCFS() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -356,6 +353,7 @@ function priority() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -366,7 +364,7 @@ function priority() {
     if (temp.length > 0) {
         const currentProcess = temp.shift();
         let executionTime = 0;
-        let preemtive = document.getElementById("preemtive").checked;
+        let preemtive = document.getElementById("check-24 preemtive").checked;
         if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
         } else {
@@ -396,6 +394,7 @@ function SRTF() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -405,7 +404,7 @@ function SRTF() {
     refreshCoda();
     if (temp.length > 0) {
         const currentProcess = temp.shift();
-        let preemtive = document.getElementById("preemtive").checked;
+        let preemtive = document.getElementById("check-24 preemtive").checked;
         let executionTime = 1;
         if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
