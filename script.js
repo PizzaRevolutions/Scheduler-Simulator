@@ -48,9 +48,10 @@ function addProcesses() {
     const arrivoMassimo = parseInt(document.getElementById("arrivoMassimo").value);
     const durataMassima = parseInt(document.getElementById("durataMassima").value);
     const prioritaMassima = parseInt(document.getElementById("Priorita").value);
-    const algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
-
     let processes = [];
+
+    clearInterval(intervallo);
+    resetValues();
 
     for (let i = 0; i < numeroProcessi; i++) {
         const arrive = getRandomInt(1, arrivoMassimo);
@@ -234,6 +235,10 @@ function modifyProcess(processoo) {
 }
 
 function startSimulation() {
+    let table = document.querySelector('.Tavoloprocessi');
+    if (table.innerHTML === "") {
+        return;
+    }
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
     time_quantum = parseInt(document.getElementById("quantodiTempo").value);
     clock = document.getElementById("Clockspeed").value;
