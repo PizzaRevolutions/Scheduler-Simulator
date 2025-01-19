@@ -437,7 +437,7 @@ img[id="Salvatore"] {
     transform: translate(-50%, -50%);
     border: 2px solid #5e5e5e;
     z-index: 1;
-    
+
 }
 
 #FormS span.check {
@@ -447,15 +447,15 @@ img[id="Salvatore"] {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    color: rgb(247, 247, 247) ;
-    
+    color: rgb(247, 247, 247);
+
 }
 
-#FormS input[id="check-24 preemtive"]:checked + .sphere {
+#FormS input[id="check-24 preemtive"]:checked+.sphere {
     background-color: black;
 }
 
-#FormS input[id="check-24 preemtive"]:checked + .sphere + span.check {
+#FormS input[id="check-24 preemtive"]:checked+.sphere+span.check {
     opacity: 1;
 }
 
@@ -609,18 +609,58 @@ img[id="Salvatore"] {
 }
 
 #FormS .container2 {
-    width: 74%;
-    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+#FormS .container2 label {
+    margin-right: 10px;
+}
+
+#FormS .container2 table {
+    margin: 0;
+}
+
+#FormS .container2 table tr td {
+    padding: 5px;
 }
 
 #FormS .container3 {
-
     padding: 2px 10px;
     width: 140vh;
     height: 61.5vh;
     overflow: auto;
 }
+
+#FormS .container3 .modify {
+    all: unset;
+    cursor: pointer;
+    transition: opacity 0.3s ease; /* Adding transition for opacity */
+    opacity: 0; /* Initially invisible */
+}
+
+#FormS .container3 .modify:hover {
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.548);
+    cursor: pointer;
+    opacity: 1; /* Make it fully visible on hover */
+}
+
+#FormS .container3 .mod-th,
+.mod-td {
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    background-color: transparent;
+    padding-right: 20px;
+}
+
+
+
+
+
+
+
 
 
 

@@ -72,7 +72,7 @@ function addProcesses() {
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
         <tr id="processi">
-            <th><i class="fa-solid fa-gear"></i></th>
+            <th class="mod-th"></th>
             <th class="Name">Name</th>
             <th class="Arrive">Arrive</th>
             <th class="Duration">Duration</th>
@@ -86,9 +86,9 @@ function addProcesses() {
     processes.forEach(process => {
         const newRow = `
             <tr id="${process.name}">
-                <td>
-                    <button onclick=modifyProcess("${process.name}")>
-                        <i class="fa-solid fa-pen"></i>
+                <td class="mod-td">
+                    <button class="modify" onclick=modifyProcess("${process.name}")>
+                        <i name="icons" class="fa-solid fa-pen"></i>
                     </button>
                 </td>
                 <td>${process.name}</td>
@@ -102,11 +102,18 @@ function addProcesses() {
         table.innerHTML += newRow;
     });
 
-    // Recalculate and update the left position
+    const styleSheet = document.styleSheets[0]; 
+
+    processes.forEach(process => {
+        const rule = `#FormS .container3 tr[id="${process.name}"]:hover .modify { opacity: 1; }`;
+        styleSheet.insertRule(rule, styleSheet.cssRules.length);
+    });
+
+    
     updateLeftPosition();
 }
 
-// Function to update the left position of 'elemento3'
+
 function updateLeftPosition() {
     const elemento1 = document.querySelector('.container');
     const elemento2 = document.querySelector('.Processi');
@@ -206,8 +213,8 @@ function modifyProcess(processoo) {
             processes_data[i].priority = priorita;
             let row = document.getElementById(`${processoo}`);
             row.innerHTML = `
-                <td><button onclick=modifyProcess("${processoo}")>
-                    <i class="fa-solid fa-pen"></i>
+                <td class="mod-td"><button class="modify" onclick=modifyProcess("${processoo}")>
+                    <i name="icons" class="fa-solid fa-pen"></i>
                 </button></td>
                 <td>${processoo}</td>
                 <td>${arrivo}</td>
@@ -217,6 +224,7 @@ function modifyProcess(processoo) {
                 <td id="twt${processoo}"></td>
             `;
         }
+        
     }
 }
 
@@ -273,8 +281,14 @@ function tttw(currentProcess) {
 
 function refreshCoda() {
     const coda = document.getElementById("Coda");
-    coda.innerHTML = temp.map(process => process.name).join(', ');
+    const cells = temp.map(process => `<td>${process.name}</td>`).join('');
+    const table = `<table><tr>${cells}</tr></table>`;
+    
+    coda.innerHTML = coda.innerHTML.split('</label>')[0] + '</label>' + table;
 }
+
+
+
 function roundRobin() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
