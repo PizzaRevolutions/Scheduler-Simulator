@@ -201,10 +201,18 @@ function modifyProcess(processoo) {
     clearInterval(intervallo);
     for (let i = 0; i < processes_data.length; i++) {
         if (processes_data[i].name === processoo) {
-            console.log(processes_data[i]);
-            let arrivo = prompt("Inserisci il nuovo arrivo");
-            let durata = prompt("Inserisci la nuova durata");
-            let priorita = prompt("Inserisci la nuova priorita");
+            let arrivo = NaN;
+            let durata = NaN;
+            let priorita = NaN;
+            while (isNaN(arrivo)) {
+                arrivo = parseInt(prompt("Inserisci il nuovo arrivo"));
+            }
+            while (isNaN(durata)) {
+                durata = parseInt(prompt("Inserisci la nuova durata"));
+            }
+            while (isNaN(priorita)) {
+                priorita = parseInt(prompt("Inserisci la nuova priorita"));
+            }
             processes_data[i].arrive = arrivo;
             processes_data[i].duration = durata;
             processes_data[i].priority = priorita;
