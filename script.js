@@ -68,9 +68,10 @@ function addProcesses() {
     const arrivoMassimo = parseInt(document.getElementById("arrivoMassimo").value);
     const durataMassima = parseInt(document.getElementById("durataMassima").value);
     const prioritaMassima = parseInt(document.getElementById("Priorita").value);
-    const algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
-
     let processes = [];
+
+    clearInterval(intervallo);
+    resetValues();
 
     for (let i = 0; i < numeroProcessi; i++) {
         const arrive = getRandomInt(1, arrivoMassimo);
@@ -87,7 +88,6 @@ function addProcesses() {
         process.name = `P${index}`;
     });
     processes_data = [...processes]; // Save the generated processes
-    console.log(processes_data);
 
     const table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = `
@@ -107,7 +107,7 @@ function addProcesses() {
         const newRow = `
             <tr id="${process.name}">
                 <td class="mod-td">
-                    <button class="modify" onclick=modifyProcess("${process.name}")>
+                    <button class="modify" onclick=modifyProcess("${process.name}" id="modify${process.name}")>
                         <i name="icons" class="fa-solid fa-pen"></i>
                     </button>
                 </td>
@@ -148,8 +148,6 @@ function updateLeftPosition() {
 
 function modifyed() {
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
-    console.log(algoritmoSelezionato);
-
     let preemtive = document.getElementById("check-24 preemtive");
     let preemtiveLabel = document.getElementById("preemtive-label");
 
@@ -224,16 +222,24 @@ function modifyProcess(processoo) {
     clearInterval(intervallo);
     for (let i = 0; i < processes_data.length; i++) {
         if (processes_data[i].name === processoo) {
-            console.log(processes_data[i]);
-            let arrivo = prompt("Inserisci il nuovo arrivo");
-            let durata = prompt("Inserisci la nuova durata");
-            let priorita = prompt("Inserisci la nuova priorita");
+            let arrivo = NaN;
+            let durata = NaN;
+            let priorita = NaN;
+            while (isNaN(arrivo)) {
+                arrivo = parseInt(prompt("Inserisci il nuovo arrivo"));
+            }
+            while (isNaN(durata)) {
+                durata = parseInt(prompt("Inserisci la nuova durata"));
+            }
+            while (isNaN(priorita)) {
+                priorita = parseInt(prompt("Inserisci la nuova priorita"));
+            }
             processes_data[i].arrive = arrivo;
             processes_data[i].duration = durata;
             processes_data[i].priority = priorita;
             let row = document.getElementById(`${processoo}`);
             row.innerHTML = `
-                <td class="mod-td"><button class="modify" onclick=modifyProcess("${processoo}")>
+                <td class="mod-td"><button class="modify" onclick=modifyProcess("${processoo}" id="modify${processoo}")>
                     <i name="icons" class="fa-solid fa-pen"></i>
                 </button></td>
                 <td>${processoo}</td>
@@ -249,17 +255,21 @@ function modifyProcess(processoo) {
 }
 
 function startSimulation() {
+    let table = document.querySelector('.Tavoloprocessi');
+    if (table.innerHTML === "") {
+        return;
+    }
     let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
     time_quantum = parseInt(document.getElementById("quantodiTempo").value);
     clock = document.getElementById("Clockspeed").value;
     queue = [...processes_data];
-    console.log(queue);
-    console.log(processes_data);
     let min = 0;
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive < min) {
             min = queue[i].arrive;
         }
+        let modify = document.getElementById(`modify${queue[i].name}`);
+        modify.style.display = "none";
     }
     while (min > actual_time) {
         actual_time++;
@@ -280,6 +290,10 @@ function stopSimulation() {
     clearInterval(intervallo);
     let table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = "";
+    resetValues();
+}
+
+function resetValues() {
     actual_time = 0;
     queue = [];
     processes_data = [];
@@ -288,6 +302,7 @@ function stopSimulation() {
 }
 
 function tttw(currentProcess) {
+    console.log("Tempo attuale: " + actual_time + " Arrivo: " + currentProcess.arrive + " Durata: " + currentProcess.temp);
     let tt = actual_time - currentProcess.arrive;
     let tw = tt - currentProcess.temp;
     let riga = document.getElementById(`ttt${currentProcess.name}`);
@@ -340,6 +355,7 @@ function roundRobin() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 
@@ -347,6 +363,7 @@ function FCFS() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -369,6 +386,7 @@ function FCFS() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 
@@ -376,6 +394,7 @@ function priority() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -386,7 +405,7 @@ function priority() {
     if (temp.length > 0) {
         const currentProcess = temp.shift();
         let executionTime = 0;
-        let preemtive = document.getElementById("preemtive").checked;
+        let preemtive = document.getElementById("check-24 preemtive").checked;
         if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
         } else {
@@ -409,6 +428,7 @@ function priority() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 
@@ -416,6 +436,7 @@ function SRTF() {
     for (let i = 0; i < queue.length; i++) {
         if (queue[i].arrive <= actual_time) {
             console.log("Aggiunto " + queue[i].name + " alla coda temporanea");
+            queue[i].temp = queue[i].duration;
             temp.push(queue[i]);
             queue.splice(i, 1);
             i--;
@@ -425,7 +446,7 @@ function SRTF() {
     refreshCoda();
     if (temp.length > 0) {
         const currentProcess = temp.shift();
-        let preemtive = document.getElementById("preemtive").checked;
+        let preemtive = document.getElementById("check-24 preemtive").checked;
         let executionTime = 1;
         if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
@@ -449,6 +470,7 @@ function SRTF() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 function addColumn(process) {
