@@ -253,6 +253,10 @@ function saveProcess(processoo, i) {
 }
 
 function startSimulation() {
+    let button = document.getElementById("Center-button");
+    button.innerHTML = `<i class="fa-solid fa-stop"></i>`;
+    button.style.backgroundColor = "rgb(255, 82, 82)";
+    button.onclick = stopSimulation;
     let table = document.querySelector('.Tavoloprocessi');
     if (table.innerHTML === "") {
         return;
@@ -284,11 +288,39 @@ function startSimulation() {
     }
 }
 
-function stopSimulation() {
+function deleteSimulation() {
     clearInterval(intervallo);
     let table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = "";
     resetValues();
+}
+
+function stopSimulation() {
+    clearInterval(intervallo);
+    let button = document.getElementById("Center-button");
+    button.onclick = restartSimulation;
+    button.innerHTML = `<i class="fa-solid fa-play"></i>`;
+    button.style.backgroundColor = "rgba(209, 0, 0, 0.96)";
+}
+
+function restartSimulation() {
+    let button = document.getElementById("Center-button");
+    button.innerHTML = `<i class="fa-solid fa-stop"></i>`;
+    button.style.backgroundColor = "rgb(255, 82, 82)";
+    button.onclick = stopSimulation;
+    let algoritmoSelezionato = document.getElementById("Tipodialgoritmo").value;
+    time_quantum = parseInt(document.getElementById("quantodiTempo").value);
+    clock = document.getElementById("Clockspeed").value;
+    refreshCoda();
+    if (algoritmoSelezionato === "round robin") {
+        intervallo = setInterval(roundRobin, clock);
+    } else if (algoritmoSelezionato === "FCFS") {
+        intervallo = setInterval(FCFS, clock);
+    } else if (algoritmoSelezionato === "priorita") {
+        intervallo = setInterval(priority, clock);
+    } else if (algoritmoSelezionato === "SRTF") {
+        intervallo = setInterval(SRTF, clock);
+    }
 }
 
 function resetValues() {
@@ -297,6 +329,10 @@ function resetValues() {
     processes_data = [];
     temp.length = 0;
     refreshCoda();
+    let button = document.getElementById("Center-button");
+    button.onclick = startSimulation;
+    button.innerHTML = `<i class="fa-solid fa-play"></i>`;
+    button.style.backgroundColor = "rgba(209, 0, 0, 0.96)";
 }
 
 function tttw(currentProcess) {
