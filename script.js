@@ -265,6 +265,10 @@ function stopSimulation() {
     clearInterval(intervallo);
     let table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = "";
+    resetValues();
+}
+
+function resetValues() {
     actual_time = 0;
     queue = [];
     processes_data = [];
@@ -326,6 +330,7 @@ function roundRobin() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 
@@ -356,6 +361,7 @@ function FCFS() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 
@@ -397,6 +403,7 @@ function priority() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 
@@ -438,6 +445,7 @@ function SRTF() {
     } else {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
+        resetValues();
     }
 }
 function addColumn(process) {
