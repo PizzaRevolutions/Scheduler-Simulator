@@ -328,6 +328,7 @@ function roundRobin() {
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+            addEnd(currentProcess);
             tttw(currentProcess);
         }
     } else if (queue.length > 0) {
@@ -360,6 +361,7 @@ function FCFS() {
             actual_time++;
         }
         console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+        addEnd(currentProcess);
         tttw(currentProcess);
     } else if (queue.length > 0) {
         actual_time++;
@@ -401,6 +403,7 @@ function priority() {
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+            addEnd(currentProcess);
             tttw(currentProcess);
         }
     } else if (queue.length > 0) {
@@ -427,7 +430,7 @@ function SRTF() {
     if (temp.length > 0) {
         const currentProcess = temp.shift();
         let preemtive = document.getElementById("check-24 preemtive").checked;
-        let executionTime = 1;
+        let executionTime;
         if (preemtive && currentProcess.duration > 0) {
             executionTime = 1;
         } else {
@@ -443,6 +446,7 @@ function SRTF() {
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
+            addEnd(currentProcess);
             tttw(currentProcess);
         }
         } else if (queue.length > 0) {
@@ -459,18 +463,31 @@ function addColumn(process) {
         <th>${actual_time}</th>
     `;
     for (let i = 0; i < processes_data.length; i++) {
-        let rigaAttuale = processes_data[i];
-        let rigaElemento = document.getElementById(rigaAttuale.name);
-        if (rigaAttuale.name === process.name) {
-            rigaElemento.innerHTML +=
-                `<td style="background-color: rgba(255, 82, 82, 0.96);"></td>`
+        let actualProcess = processes_data[i];
+        let actualLine = document.getElementById(actualProcess.name);
+        if (actualProcess.name === process.name) {
+            actualLine.innerHTML +=
+                `<td style="background-color: rgba(255, 82, 82, 0.96);" id="${actualProcess.name}-${actual_time}"></td>`
             ;
         } else {
-            rigaElemento.innerHTML += `<td></td>`;
+            actualLine.innerHTML += `<td id="${actualProcess.name}-${actual_time}"></td>`;
+        }
+        if (actualProcess.arrive <= actual_time) {
+            addStart(actualProcess);
         }
     }
     updateLeftPosition();
 }
 
+function addStart(process) {
+    let riga = document.getElementById(`${process.name}-${process.arrive}`);
+    riga.style.borderLeft = "3px solid black";
+}
+
+function addEnd(process) {
+    let riga = document.getElementById(`${process.name}-${actual_time-1}`);
+    riga.innerHTML = "F";
+    riga.style.textAlign = "right";
+}
 
 updateLeftPosition();
