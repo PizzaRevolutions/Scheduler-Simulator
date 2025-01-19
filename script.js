@@ -107,14 +107,14 @@ function addProcesses() {
         const newRow = `
             <tr id="${process.name}">
                 <td class="mod-td">
-                    <button class="modify" onclick=modifyProcess("${process.name}" id="modify${process.name}")>
+                    <button class="modify" onclick="modifyProcess('${process.name}')" id="modify${process.name}")>
                         <i name="icons" class="fa-solid fa-pen"></i>
                     </button>
                 </td>
                 <td>${process.name}</td>
-                <td>${process.arrive}</td>
-                <td>${process.duration}</td>
-                <td>${process.priority}</td>
+                <td id="arrivo${process.name}">${process.arrive}</td>
+                <td id="durata${process.name}">${process.duration}</td>
+                <td id="priorita${process.name}">${process.priority}</td>
                 <td id="ttt${process.name}"></td>
                 <td id="twt${process.name}"></td>
             </tr>
@@ -221,37 +221,35 @@ function modifyed() {
 function modifyProcess(processoo) {
     clearInterval(intervallo);
     for (let i = 0; i < processes_data.length; i++) {
-        if (processes_data[i].name === processoo) {
-            let arrivo = NaN;
-            let durata = NaN;
-            let priorita = NaN;
-            while (isNaN(arrivo)) {
-                arrivo = parseInt(prompt("Inserisci il nuovo arrivo"));
-            }
-            while (isNaN(durata)) {
-                durata = parseInt(prompt("Inserisci la nuova durata"));
-            }
-            while (isNaN(priorita)) {
-                priorita = parseInt(prompt("Inserisci la nuova priorita"));
-            }
-            processes_data[i].arrive = arrivo;
-            processes_data[i].duration = durata;
-            processes_data[i].priority = priorita;
-            let row = document.getElementById(`${processoo}`);
-            row.innerHTML = `
-                <td class="mod-td"><button class="modify" onclick=modifyProcess("${processoo}" id="modify${processoo}")>
-                    <i name="icons" class="fa-solid fa-pen"></i>
-                </button></td>
-                <td>${processoo}</td>
-                <td>${arrivo}</td>
-                <td>${durata}</td>
-                <td>${priorita}</td>
-                <td id="ttt${processoo}"></td>
-                <td id="twt${processoo}"></td>
-            `;
+        if (processes_data[i].name === processoo) { 
+            let arrivo = processes_data[i].arrive;
+            let durata = processes_data[i].duration;
+            let priorita = processes_data[i].priority;
+            let arrivoInput = document.getElementById(`arrivo${processoo}`);
+            let durataInput = document.getElementById(`durata${processoo}`);
+            let prioritaInput = document.getElementById(`priorita${processoo}`);
+            arrivoInput.innerHTML = `<input type='number' id='arrivoInput' value='${arrivo}'>`;
+            durataInput.innerHTML = `<input type='number' id='durataInput' value='${durata}'>`;
+            prioritaInput.innerHTML = `<input type='number' id='prioritaInput' value='${priorita}'> <button onclick="saveProcess('${processoo}', '${i}')">Save</button>`;
         }
         
     }
+}
+
+function saveProcess(processoo, i) {
+    let arrivo = document.getElementById(`arrivoInput`).value;
+    let durata = document.getElementById(`durataInput`).value;
+    let priorita = document.getElementById(`prioritaInput`).value;
+    processes_data[i].arrive = arrivo;
+    processes_data[i].duration = durata;
+    processes_data[i].priority = priorita;
+    let arrivoInput = document.getElementById(`arrivo${processoo}`);
+    let durataInput = document.getElementById(`durata${processoo}`);
+    let prioritaInput = document.getElementById(`priorita${processoo}`);
+    arrivoInput.innerHTML = arrivo;
+    durataInput.innerHTML = durata;
+    prioritaInput.innerHTML = priorita;
+
 }
 
 function startSimulation() {
