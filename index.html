@@ -21,8 +21,8 @@
     <div>
         <ul id="navbar">
 
-            <li><a class="active" href="https://github.com/PizzaRevolutions/Scheduler-Simulator/tree/main"><i
-                        class="fa-brands fa-github" style="color: #000000;"></i> GitHub</a>
+            <li><span><a class="active" href="https://github.com/PizzaRevolutions/Scheduler-Simulator/tree/main"><i
+                        class="fa-brands fa-github" ></i> GitHub</a></span>
             </li>
             <li>
                 <div class="Profili">
@@ -95,12 +95,12 @@
 
             <label for="preemtive" id="preemtive-label">Preemtive:</label>
 
-            <div  class="checkbox-container">
+            <div class="checkbox-container">
                 <input type="checkbox" id="check-24 preemtive">
                 <div class="sphere" id="sphere"></div>
-                <span class="check" id="check"><i class="fa-solid fa-check"></i></span> 
+                <span class="check" id="check"><i class="fa-solid fa-check"></i></span>
             </div>
-            
+
 
 
             <div class="Buttons">
@@ -114,17 +114,28 @@
                             style="color: #ffffff;"></i></button>
                 </div>
                 <div class="Buttons-3">
-                    <button class="Alert"><i class="fa-solid fa-triangle-exclamation"
-                            style="color: #000000;"></i></button>
-                    <button class="Sliders"><i class="fa-solid fa-sliders" style="color: #000000;"></i></button>
-
+                    <button class="Alert" onclick="ShowLegend2()">
+                        <i class="fa-solid fa-triangle-exclamation" ></i>
+                    </button>
+                    <button class="Sliders" onclick="ShowLegend1()">
+                        <i class="fa-solid fa-sliders" ></i>
+                    </button>
+                </div>
+            
+                <div class="Legend2">
+                    <span style="color: rgb(230, 0, 0); font-weight: bold;">Warning:</span>
+                    <span>Too high values to the bench attributes may slow down the site or in some cases it may become unresponsive. It's up to you!</span>
+                </div>
+            
+                <div class="Legend1">
+                    <span>Developers are too lazy to<br>put options, sorry 🥱</span>
                 </div>
             </div>
         </div>
 
         <div id="Coda" class="container2">
-            
-            <label for="Coda">Queue:</label>
+
+            <span for="Coda">Queue:</span>
         </div>
 
         <div class="Processi container3">

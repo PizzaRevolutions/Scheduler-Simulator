@@ -26,6 +26,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function ShowLegend2() {
+    var legend2 = document.querySelector('.Legend2');
+    if (legend2.style.display === 'none' || legend2.style.display === '') {
+        legend2.style.display = 'block';  
+    } else {
+        legend2.style.display = 'none'; 
+    }
+}
+
+
+function ShowLegend1() {
+    var legend1 = document.querySelector('.Legend1');
+    
+    if (legend1.style.display === 'none' || legend1.style.display === '') {
+        legend1.style.display = 'block'; 
+    } else {
+        legend1.style.display = 'none'; 
+    }
+}
+
 
 
 
@@ -299,7 +319,7 @@ function refreshCoda() {
     const cells = temp.map(process => `<td>${process.name}</td>`).join('');
     const table = `<table><tr>${cells}</tr></table>`;
     
-    coda.innerHTML = coda.innerHTML.split('</label>')[0] + '</label>' + table;
+    coda.innerHTML = coda.innerHTML.split('</span>')[0] + '</span>' + table;
 }
 
 
