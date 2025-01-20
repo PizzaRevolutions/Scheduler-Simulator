@@ -263,6 +263,17 @@ function saveProcess(processoo, i) {
     buttonn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
     buttonn.onclick = () => modifyProcess(processoo);
 
+    if (arrivo > 0 && durata > 0 && priorita > 0) {
+        processes_data[i].arrive = arrivo;
+        processes_data[i].duration = durata;
+        processes_data[i].priority = priorita;
+        let arrivoInput = document.getElementById(`arrivo${processoo}`);
+        let durataInput = document.getElementById(`durata${processoo}`);
+        let prioritaInput = document.getElementById(`priorita${processoo}`);
+        arrivoInput.innerHTML = arrivo;
+        durataInput.innerHTML = durata;
+        prioritaInput.innerHTML = priorita;
+    } else return;
 }
 
 function startSimulation() {
