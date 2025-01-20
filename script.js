@@ -240,19 +240,17 @@ function saveProcess(processoo, i) {
     let arrivo = document.getElementById(`arrivoInput`).value;
     let durata = document.getElementById(`durataInput`).value;
     let priorita = document.getElementById(`prioritaInput`).value;
-    if (arrivo < 0 || durata < 0 || priorita < 0) {
-        return;
-    }
-    processes_data[i].arrive = arrivo;
-    processes_data[i].duration = durata;
-    processes_data[i].priority = priorita;
-    let arrivoInput = document.getElementById(`arrivo${processoo}`);
-    let durataInput = document.getElementById(`durata${processoo}`);
-    let prioritaInput = document.getElementById(`priorita${processoo}`);
-    arrivoInput.innerHTML = arrivo;
-    durataInput.innerHTML = durata;
-    prioritaInput.innerHTML = priorita;
-
+    if (arrivo > 0 && durata > 0 && priorita > 0) {
+        processes_data[i].arrive = arrivo;
+        processes_data[i].duration = durata;
+        processes_data[i].priority = priorita;
+        let arrivoInput = document.getElementById(`arrivo${processoo}`);
+        let durataInput = document.getElementById(`durata${processoo}`);
+        let prioritaInput = document.getElementById(`priorita${processoo}`);
+        arrivoInput.innerHTML = arrivo;
+        durataInput.innerHTML = durata;
+        prioritaInput.innerHTML = priorita;
+    } else return;
 }
 
 function startSimulation() {
