@@ -1,3 +1,4 @@
+modifyed();
 let logo = document.getElementById("logo");
 let pfpE = document.getElementById("Enrico");
 let pfpS = document.getElementById("Salvatore");
