@@ -128,22 +128,6 @@ function addProcesses() {
         const rule = `#FormS .container3 tr[id="${process.name}"]:hover .modify { opacity: 1; }`;
         styleSheet.insertRule(rule, styleSheet.cssRules.length);
     });
-
-    
-    updateLeftPosition();
-}
-
-
-function updateLeftPosition() {
-    const elemento1 = document.querySelector('.container');
-    const elemento2 = document.querySelector('.Processi');
-    const elemento3 = document.querySelector('.Tabella');
-
-    const larghezza1 = elemento1.offsetWidth;
-    const larghezza2 = elemento2.offsetWidth;
-    const sommaLarghezze = larghezza1 + larghezza2;
-
-    elemento3.style.left = sommaLarghezze + 'px';
 }
 
 function modifyed() {
@@ -188,7 +172,6 @@ function modifyed() {
         preemtiveStyle1.style.opacity= "0";
         preemtiveStyle.style.transition= "none";
         preemtiveStyle1.style.transition= "none";
-        
 
     } else if (algoritmoSelezionato === "priorita") {
         preemtiveLabel.style.display = "block";
@@ -238,7 +221,6 @@ function modifyProcess(processoo) {
             buttonn.onclick = () => saveProcess(processoo, i);
 
         }
-        
     }
 }
 
@@ -363,7 +345,6 @@ function refreshCoda() {
     const coda = document.getElementById("Coda");
     const cells = temp.map(process => `<td>${process.name}</td>`).join('');
     const table = `<table><tr>${cells}</tr></table>`;
-    
     coda.innerHTML = coda.innerHTML.split('</span>')[0] + '</span>' + table;
 }
 
@@ -541,7 +522,6 @@ function addColumn(process) {
             addStart(actualProcess);
         }
     }
-    updateLeftPosition();
 }
 
 function addStart(process) {
@@ -554,5 +534,3 @@ function addEnd(process) {
     riga.innerHTML = "F";
     riga.style.textAlign = "right";
 }
-
-updateLeftPosition();
