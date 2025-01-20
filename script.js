@@ -36,30 +36,6 @@ function lightmode() {
     pfpS.src = "images/pfps/Salvo Lombardo.png";
     button.onchange = darkmode;
 }
-//Darkmode
-document.addEventListener('DOMContentLoaded', function () {
-    const themeCheckbox = document.getElementById('checkbox');
-    const body = document.body;
-
-
-
-    themeCheckbox.addEventListener('change', function () {
-        if (this.checked || Cookies.get('theme') === 'dark') {
-            body.classList.add('dark-theme');
-            logo.src = "images/logos/logo-d.png";
-            Cookies.set('theme', 'dark');
-            pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
-            pfpS.src = "images/pfps/Salvo Lombardo-d.png";
-
-        } else {
-            body.classList.remove('dark-theme');
-            logo.src = "images/logos/logo.png";
-            pfpE.src = "images/pfps/Enrico Giuffrida.png";
-            pfpS.src = "images/pfps/Salvo Lombardo.png";
-            Cookies.set('theme', 'light');
-        }
-    });
-});
 
 
 function ShowLegend2() {
