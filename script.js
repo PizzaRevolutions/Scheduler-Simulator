@@ -246,22 +246,7 @@ function saveProcess(processoo, i) {
     let arrivo = document.getElementById(`arrivoInput`).value;
     let durata = document.getElementById(`durataInput`).value;
     let priorita = document.getElementById(`prioritaInput`).value;
-    if (arrivo === "" || durata === "" || priorita === "") {
-        return;
-    }
-    processes_data[i].arrive = arrivo;
-    processes_data[i].duration = durata;
-    processes_data[i].priority = priorita;
-    let arrivoInput = document.getElementById(`arrivo${processoo}`);
-    let durataInput = document.getElementById(`durata${processoo}`);
-    let prioritaInput = document.getElementById(`priorita${processoo}`);
-    arrivoInput.innerHTML = arrivo;
-    durataInput.innerHTML = durata;
-    prioritaInput.innerHTML = priorita;
-
     let buttonn = document.getElementById(`modify${processoo}`);
-    buttonn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
-    buttonn.onclick = () => modifyProcess(processoo);
 
     if (arrivo > 0 && durata > 0 && priorita > 0) {
         processes_data[i].arrive = arrivo;
@@ -273,6 +258,8 @@ function saveProcess(processoo, i) {
         arrivoInput.innerHTML = arrivo;
         durataInput.innerHTML = durata;
         prioritaInput.innerHTML = priorita;
+        buttonn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
+        buttonn.onclick = () => modifyProcess(processoo);
     } else return;
 }
 
