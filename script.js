@@ -220,6 +220,9 @@ function modifyProcess(processoo) {
             buttonn.innerHTML = `<i style="font-size: 18px;"class="fa-solid fa-circle-check"></i>`;
             buttonn.onclick = () => saveProcess(processoo, i);
 
+            let button = document.getElementById("Center-button");
+            button.onclick = null;
+
         }
     }
 }
@@ -242,6 +245,9 @@ function saveProcess(processoo, i) {
         prioritaInput.innerHTML = priorita;
         buttonn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
         buttonn.onclick = () => modifyProcess(processoo);
+        
+        let button = document.getElementById("Center-button");
+        button.onclick = null;
     } else return;
 }
 
