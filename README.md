@@ -24,6 +24,9 @@ This project is a web-based CPU scheduling algorithm simulator, allowing you to 
  - CSS
  - JavaScript
  
+## Dependency
+- [js-cookie](https://github.com/js-cookie/js-cookie)
+
 ## Collaborators
 
  - [Enrico Giuffrida](https://github.com/Xrick777)
@@ -55,6 +58,9 @@ Questo progetto è un simulatore web di algoritmi di scheduling della CPU. Perme
  - HTML
  - CSS
  - JavaScript
+
+## Dipendenze
+- [js-cookie](https://github.com/js-cookie/js-cookie)
  
 ## Collaboratori
 
