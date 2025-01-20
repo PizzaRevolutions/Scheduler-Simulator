@@ -230,7 +230,13 @@ function modifyProcess(processoo) {
             let prioritaInput = document.getElementById(`priorita${processoo}`);
             arrivoInput.innerHTML = `<input type='number' id='arrivoInput' value='${arrivo}'>`;
             durataInput.innerHTML = `<input type='number' id='durataInput' value='${durata}'>`;
-            prioritaInput.innerHTML = `<input type='number' id='prioritaInput' value='${priorita}'> <button onclick="saveProcess('${processoo}', '${i}')">Save</button>`;
+            prioritaInput.innerHTML = `<input type='number' id='prioritaInput' value='${priorita}'>`;
+
+            let buttonn = document.getElementById(`modify${processoo}`);
+
+            buttonn.innerHTML = `<i style="font-size: 18px;"class="fa-solid fa-circle-check"></i>`;
+            buttonn.onclick = () => saveProcess(processoo, i);
+
         }
         
     }
@@ -252,6 +258,10 @@ function saveProcess(processoo, i) {
     arrivoInput.innerHTML = arrivo;
     durataInput.innerHTML = durata;
     prioritaInput.innerHTML = priorita;
+
+    let buttonn = document.getElementById(`modify${processoo}`);
+    buttonn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
+    buttonn.onclick = () => modifyProcess(processoo);
 
 }
 
@@ -524,7 +534,7 @@ function addColumn(process) {
         let actualLine = document.getElementById(actualProcess.name);
         if (actualProcess.name === process.name) {
             actualLine.innerHTML +=
-                `<td style="background-color: rgba(255, 82, 82, 0.96);" id="${actualProcess.name}-${actual_time}"></td>`
+                `<td class="colored-tile" id="${actualProcess.name}-${actual_time}"></td>`
             ;
         } else {
             actualLine.innerHTML += `<td id="${actualProcess.name}-${actual_time}"></td>`;
@@ -538,7 +548,7 @@ function addColumn(process) {
 
 function addStart(process) {
     let riga = document.getElementById(`${process.name}-${process.arrive}`);
-    riga.style.borderLeft = "3px solid black";
+    riga.style.borderLeft = "3px solid var(--initialbords-color)";
 }
 
 function addEnd(process) {

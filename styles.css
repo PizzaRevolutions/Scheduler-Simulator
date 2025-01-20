@@ -10,6 +10,10 @@
 
     --spans-color: #272727;
 
+    --shadows-color: rgba(0, 0, 0, 0.356);
+
+    --noborderbuttons-color: black;
+
     --headings-color: #040404;
 
     --paragraphs-color: #717171;
@@ -18,15 +22,27 @@
 
     --container1-color: rgb(238, 238, 238);
 
+    --tabletd-color: rgb(238, 238, 238);
+
+    --tableth-color: #dadada;
+
+    --border-color: #747474;
+
     --container1dec-color: #d3d3d3;
 
     --labels-color: rgb(0, 0, 0);
 
     /* undefined --seventh-color: rgba(247, 253, 255, 0.96);*/
 
-    --inputselect-color: white;
+    --inputselect-color: rgb(236, 236, 236);
+
+    --inputmod-color: rgb(238, 238, 238);
 
     --textsinlabel-color: rgba(56, 56, 56, 0.753);
+
+    --coloredtd-color: rgba(255, 82, 82, 0.96);
+
+    --initialbords-color: black;
 
 
 }
@@ -38,23 +54,39 @@
 
     --spans-color: #ececec;
 
-    --headings-color: #fbfbfb;
+    --shadows-color: rgba(255, 255, 255, 0.589);
+
+    --noborderbuttons-color: white;
+
+    --headings-color: #d1d1d1;
 
     --paragraphs-color: #818181;
 
     --headershadow-color: rgba(56, 56, 56, 0.973);
 
-    --container1-color: rgb(39, 39, 39);
+    --container1-color: rgb(54 54 54);
 
-    --container1dec-color: #2c2c2c;
+    --tabletd-color: rgb(54 54 54);
+
+    --tableth-color: #2d2d2d;
+
+    --border-color: #b1b1b1;
+
+    --container1dec-color: #2d2d2d;
 
     --labels-color: rgb(246, 246, 246);
 
     /*--seventh-color: rgba(23, 24, 24, 0.96);*/
 
-    --inputselect-color: rgba(56, 56, 56, 0.973);
+    --inputselect-color: #2d2d2d;
 
-    --textsinlabel-color: rgba(255, 255, 255, 0.371);
+    --inputmod-color: rgb(54 54 54);
+
+    --textsinlabel-color: rgba(255, 255, 255, 0.63);
+
+    --coloredtd-color: rgba(131, 23, 23, 0.96);
+
+    --initialbords-color: #ffffff;
 
 
 }
@@ -199,7 +231,7 @@ img {
 .Profili {
     position: relative;
     height: 50px;
-    width: 75px;
+    width: 82.5px;
     transition: 0.4s ease;
 }
 
@@ -221,7 +253,7 @@ img {
 }
 
 .Profili:hover {
-    width: 400px;
+    width: 422.5px;
 }
 
 .Profili:hover img[id="Enrico"] {
@@ -284,14 +316,14 @@ img[id="Salvatore"] {
 #navbar li a {
     text-decoration: none;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     transition: 0.3s ease;
 }
 
 #navbar li a:hover,
 #navbar li a.active {
     color: var(--spans-color);
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
+    text-shadow: 0px 0px 4px var(--shadows-color);
     font-weight: 700;
 }
 
@@ -399,13 +431,13 @@ img[id="Salvatore"] {
     padding-top: 10px;
     font-size: 22px;
     font-weight: 700;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
+    text-shadow: 0px 0px 2px var(--shadows-color);
 
 }
 
 
 #FormS label {
-    color: #5e5e5e;
+    color: var(--labels-color);
     font-size: 18px;
     text-align: left;
 
@@ -419,8 +451,8 @@ img[id="Salvatore"] {
     border-radius: 10px;
     font-size: 15px;
     transition: 0.3 ease;
-    background-color: var(--eightth-color);
-    color: #5e5e5e;
+    background-color: var(--inputselect-color);
+    color: var(--textsinlabel-color);
     margin-left: 30%;
 
 
@@ -435,8 +467,8 @@ img[id="Salvatore"] {
     border-radius: 10px;
     font-size: 15px;
     transition: 0.3 ease;
-    background-color: var(--eightth-color);
-    color: #5e5e5e;
+    background-color: var(--inputselect-color);
+    color: var(--textsinlabel-color);
     margin-left: 30%;
     appearance: none;
     text-align: center;
@@ -527,13 +559,15 @@ img[id="Salvatore"] {
 
 #FormS button[class="Sliders"]:hover {
     background: none;
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.356);
+    text-shadow: 0px 0px 4px var(--shadows-color);
+    color: var(--noborderbuttons-color);
     box-shadow: none;
 }
 
 #FormS button[class="Alert"]:hover {
     background: none;
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.356);
+    text-shadow: 0px 0px 4px var(--shadows-color);
+    color: var(--noborderbuttons-color);
     box-shadow: none;
 }
 
@@ -683,7 +717,7 @@ img[id="Salvatore"] {
     padding: 20px;
     font-size: 22px;
     font-weight: 700;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.356);
+    text-shadow: 0px 0px 2px var(--shadows-color);
 }
 
 #FormS .container2 table {
@@ -701,6 +735,35 @@ img[id="Salvatore"] {
     overflow: auto;
 }
 
+#FormS .container3 input[id="arrivoInput"],
+#FormS .container3 input[id="prioritaInput"],
+#FormS .container3 input[id="durataInput"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    margin: 0;
+    text-align: center;
+    border: none;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+    background-color: var(--inputmod-color);
+}
+
+#FormS .container3 input[id="arrivoInput"]:focus,
+#FormS .container3 input[id="prioritaInput"]:focus,
+#FormS .container3 input[id="durataInput"]:focus {
+    outline: none;
+    border: none;
+}
+
+#FormS .container3 input[type="number"]::-webkit-inner-spin-button,
+#FormS .container3 input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
 #FormS .container3 .modify {
     all: unset;
     cursor: pointer;
@@ -710,19 +773,31 @@ img[id="Salvatore"] {
 }
 
 #FormS .container3 .modify:hover {
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.548);
+    text-shadow: 0px 0px 10px var(--shadows-color);
     cursor: pointer;
     opacity: 1;
-  
+
 }
 
-#FormS .container3 .mod-th,
-.mod-td {
+#FormS .container3 .Tavoloprocessi td {
+    background-color: var(--tabletd-color);
+}
+
+#FormS .container3 .Tavoloprocessi .mod-td {
     border-left: none;
     border-top: none;
     border-bottom: none;
-    background-color: transparent;
     padding-right: 20px;
+    background-color: var(--section1-color);
+}
+
+
+#FormS .container3 .Tavoloprocessi .mod-th {
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    padding-right: 20px;
+    background-color: var(--section1-color);
 }
 
 
@@ -739,14 +814,19 @@ img[id="Salvatore"] {
 
 #FormS .Tavoloprocessi th,
 td {
-    border: 2.5px solid #747474;
+    border: 2.5px solid var(--border-color);
     text-align: center;
     padding: 8px;
+    color: var(--headings-color);
 
 }
 
 #FormS .Tavoloprocessi th {
-    background-color: #f2f2f2;
+    background-color: var(--tableth-color);
+}
+
+#FormS .container3 .Tavoloprocessi td[class="colored-tile"] {
+    background-color: var(--coloredtd-color);
 }
 
 
