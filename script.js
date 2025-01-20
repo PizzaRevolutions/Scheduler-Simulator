@@ -1,18 +1,52 @@
-modifyed();
+let logo = document.getElementById("logo");
+let pfpE = document.getElementById("Enrico");
+let pfpS = document.getElementById("Salvatore");
+let button = document.getElementById("checkbox");
+if (Cookies.get('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+    logo.src = "images/logos/logo-d.png";
+    Cookies.set('theme', 'dark');
+    pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
+    pfpS.src = "images/pfps/Salvo Lombardo-d.png";
+    button.onchange = lightmode;
+    button.checked = true;
+} else {
+    document.body.classList.remove('dark-theme');
+    logo.src = "images/logos/logo.png";
+    Cookies.set('theme', 'light');
+    pfpE.src = "images/pfps/Enrico Giuffrida.png";
+    pfpS.src = "images/pfps/Salvo Lombardo.png";
+    button.onchange = darkmode;
+    button.checked = false;
+}
+function darkmode() {
+    document.body.classList.add('dark-theme');
+    logo.src = "images/logos/logo-d.png";
+    Cookies.set('theme', 'dark');
+    pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
+    pfpS.src = "images/pfps/Salvo Lombardo-d.png";
+    button.onchange = lightmode;
+}
+function lightmode() {
+    document.body.classList.remove('dark-theme');
+    logo.src = "images/logos/logo.png";
+    Cookies.set('theme', 'light');
+    pfpE.src = "images/pfps/Enrico Giuffrida.png";
+    pfpS.src = "images/pfps/Salvo Lombardo.png";
+    button.onchange = darkmode;
+}
 //Darkmode
 document.addEventListener('DOMContentLoaded', function () {
     const themeCheckbox = document.getElementById('checkbox');
     const body = document.body;
 
-    let logo = document.getElementById("logo")
-    let pfpE = document.getElementById("Enrico")
-    let pfpS = document.getElementById("Salvatore")
 
 
     themeCheckbox.addEventListener('change', function () {
-        if (this.checked) {
+        if (this.checked || Cookies.get('theme') === 'dark') {
             body.classList.add('dark-theme');
             logo.src = "images/logos/logo-d.png";
+            Cookies.set('theme', 'dark');
             pfpE.src = "images/pfps/Enrico Giuffrida-d.png";
             pfpS.src = "images/pfps/Salvo Lombardo-d.png";
 
@@ -21,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             logo.src = "images/logos/logo.png";
             pfpE.src = "images/pfps/Enrico Giuffrida.png";
             pfpS.src = "images/pfps/Salvo Lombardo.png";
+            Cookies.set('theme', 'light');
         }
     });
 });
@@ -64,6 +99,7 @@ function getRandomInt(min, max) {
 }
 
 function addProcesses() {
+    console.log(Cookies.get('theme'));
     const numeroProcessi = parseInt(document.getElementById("numeroProcessi").value);
     const arrivoMassimo = parseInt(document.getElementById("arrivoMassimo").value);
     const durataMassima = parseInt(document.getElementById("durataMassima").value);
@@ -540,3 +576,4 @@ function addEnd(process) {
     riga.innerHTML = "F";
     riga.style.textAlign = "right";
 }
+
