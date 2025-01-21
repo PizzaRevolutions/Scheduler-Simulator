@@ -88,9 +88,9 @@ function addProcesses() {
     resetValues();
 
     for (let i = 0; i < numeroProcessi; i++) {
-        const arrive = getRandomInt(1, arrivoMassimo);
+        const arrive = getRandomInt(0, arrivoMassimo);
         const duration = getRandomInt(1, durataMassima);
-        const priority = getRandomInt(1, prioritaMassima);
+        const priority = getRandomInt(0, prioritaMassima);
 
         processes.push({ name: `P${i}`, arrive, duration, priority });
     }
@@ -259,7 +259,6 @@ function saveProcess(processoo, i) {
         prioritaInput.innerHTML = priorita;
         buttonn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
         buttonn.onclick = () => modifyProcess(processoo);
-        
         let button = document.getElementById("Center-button");
         button.onclick = startSimulation;
     } else return;
