@@ -261,7 +261,7 @@ function saveProcess(processoo, i) {
         buttonn.onclick = () => modifyProcess(processoo);
         
         let button = document.getElementById("Center-button");
-        button.onclick = null;
+        button.onclick = startSimulation;
     } else return;
 }
 
