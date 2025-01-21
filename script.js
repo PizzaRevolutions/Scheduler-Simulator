@@ -248,7 +248,7 @@ function saveProcess(processoo, i) {
     let priorita = document.getElementById(`prioritaInput${processoo}`).value;
     let buttonn = document.getElementById(`modify${processoo}`);
 
-    if (arrivo >= 0 && durata >= 0 && priorita >= 0) {
+    if (arrivo >= 0 && durata > 0 && priorita >= 0) {
         processes_data[i].arrive = arrivo;
         processes_data[i].duration = durata;
         processes_data[i].priority = priorita;
@@ -463,14 +463,15 @@ function priority() {
         } else {
             executionTime = currentProcess.duration;
         }
-        console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
+        if (!preemtive) console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
         for (let i = 0; i < executionTime; i++) {
             addColumn(currentProcess);
             actual_time++;
         }
         if (preemtive && currentProcess.duration > 0) {
+            console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
             currentProcess.duration -= executionTime;
-            temp.push(currentProcess);
+            temp.unshift(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
             addEnd(currentProcess);
@@ -516,7 +517,7 @@ function SRTF() {
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-            addEnd(currentProcess);
+            temp.unshift(currentProcess);
             tttw(currentProcess);
         }
         } else if (queue.length > 0) {
@@ -558,4 +559,3 @@ function addEnd(process) {
     riga.innerHTML = "F";
     riga.style.textAlign = "right";
 }
-
