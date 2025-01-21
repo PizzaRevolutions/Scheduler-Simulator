@@ -46,6 +46,12 @@
 
     --legend12border-color: black;
 
+    --checkspan-color: transparent;
+
+    --checkedspan-color: white;
+
+    --bgcheck-color: black;
+
 
 }
 
@@ -92,7 +98,11 @@
 
     --legend12border-color: rgb(255, 255, 255);
 
+    --checkspan-color: transparent;
 
+    --checkedspan-color: black;
+
+    --bgcheck-color: white;
 }
 
 /* Generali */
@@ -516,16 +526,17 @@ img[id="Salvatore"] {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    color: rgb(247, 247, 247);
+    color: var(--checkspan-color);
 
 }
 
 #FormS input[id="check-24 preemtive"]:checked+.sphere {
-    background-color: black;
+    background-color: var(--bgcheck-color);
 }
 
 #FormS input[id="check-24 preemtive"]:checked+.sphere+span.check {
     opacity: 1;
+    color: var(--checkedspan-color);
 }
 
 
