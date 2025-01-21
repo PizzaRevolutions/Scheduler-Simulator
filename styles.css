@@ -773,8 +773,8 @@ img[id="Salvatore"] {
     border: none;
 }
 
-#FormS .container3 input[type="number"]::-webkit-inner-spin-button,
-#FormS .container3 input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
