@@ -232,6 +232,7 @@ function modifyProcess(processoo) {
             let buttonn = document.getElementById(`modify${processoo}`);
 
             buttonn.innerHTML = `<i style="font-size: 18px;"class="fa-solid fa-circle-check"></i>`;
+            buttonn.style.opacity = "100%";
             buttonn.onclick = () => saveProcess(processoo, i);
 
             let button = document.getElementById("Center-button");
@@ -261,6 +262,7 @@ function saveProcess(processoo, i) {
         buttonn.onclick = () => modifyProcess(processoo);
         let button = document.getElementById("Center-button");
         button.onclick = startSimulation;
+        buttonn.style.opacity = "";
     } else return;
 }
 
