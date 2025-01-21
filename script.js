@@ -76,7 +76,8 @@ function getRandomInt(min, max) {
 }
 
 function addProcesses() {
-    console.log(Cookies.get('theme'));
+    let button = document.getElementById("Center-button");
+    button.disabled = false;
     const numeroProcessi = parseInt(document.getElementById("numeroProcessi").value);
     const arrivoMassimo = parseInt(document.getElementById("arrivoMassimo").value);
     const durataMassima = parseInt(document.getElementById("durataMassima").value);
@@ -305,6 +306,9 @@ function deleteSimulation() {
     let table = document.querySelector('.Tavoloprocessi');
     table.innerHTML = "";
     resetValues();
+    let button = document.getElementById("Center-button");
+    button.disabled = true;
+    button.style.backgroundColor = "rgba(150, 150, 150, 1)";
 }
 
 function stopSimulation() {

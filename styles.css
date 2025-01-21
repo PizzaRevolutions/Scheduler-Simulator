@@ -590,7 +590,8 @@ img[id="Salvatore"] {
 }
 
 #FormS button:disabled {
-    background-color: rgba(150, 150, 150, 0.96);
+    background-color: rgba(150, 150, 150, 1);
+    cursor: not-allowed;
 }
 
 #FormS button:hover:disabled {
