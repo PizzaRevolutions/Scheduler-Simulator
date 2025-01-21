@@ -246,7 +246,7 @@ function saveProcess(processoo, i) {
     let priorita = document.getElementById(`prioritaInput`).value;
     let buttonn = document.getElementById(`modify${processoo}`);
 
-    if (arrivo > 0 && durata > 0 && priorita > 0) {
+    if (arrivo >= 0 && durata >= 0 && priorita >= 0) {
         processes_data[i].arrive = arrivo;
         processes_data[i].duration = durata;
         processes_data[i].priority = priorita;
