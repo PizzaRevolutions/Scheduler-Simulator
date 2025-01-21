@@ -708,6 +708,8 @@ img[id="Salvatore"] {
     align-items: center;
     gap: 10px;
     margin-top: 10px;
+    width: 100%;
+    overflow: auto;
 }
 
 #FormS .container2 span {
