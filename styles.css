@@ -736,9 +736,7 @@ img[id="Salvatore"] {
     overflow: auto;
 }
 
-#FormS .container3 input[id="arrivoInput"],
-#FormS .container3 input[id="prioritaInput"],
-#FormS .container3 input[id="durataInput"] {
+#FormS .container3 input[class="inputt"] {
     -webkit-appearance: none;
     -moz-appearance: textfield;
     appearance: none;

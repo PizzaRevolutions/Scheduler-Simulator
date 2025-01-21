@@ -225,9 +225,9 @@ function modifyProcess(processoo) {
             let arrivoInput = document.getElementById(`arrivo${processoo}`);
             let durataInput = document.getElementById(`durata${processoo}`);
             let prioritaInput = document.getElementById(`priorita${processoo}`);
-            arrivoInput.innerHTML = `<input type='number' id='arrivoInput' value='${arrivo}'>`;
-            durataInput.innerHTML = `<input type='number' id='durataInput' value='${durata}'>`;
-            prioritaInput.innerHTML = `<input type='number' id='prioritaInput' value='${priorita}'>`;
+            arrivoInput.innerHTML = `<input type='number' id='arrivoInput${processoo}' class='inputt' value='${arrivo}'>`;
+            durataInput.innerHTML = `<input type='number' id='durataInput${processoo}' class='inputt' value='${durata}'>`;
+            prioritaInput.innerHTML = `<input type='number' id='prioritaInput${processoo}' class='inputt' value='${priorita}'>`;
 
             let buttonn = document.getElementById(`modify${processoo}`);
 
@@ -242,9 +242,9 @@ function modifyProcess(processoo) {
 }
 
 function saveProcess(processoo, i) {
-    let arrivo = document.getElementById(`arrivoInput`).value;
-    let durata = document.getElementById(`durataInput`).value;
-    let priorita = document.getElementById(`prioritaInput`).value;
+    let arrivo = document.getElementById(`arrivoInput${processoo}`).value;
+    let durata = document.getElementById(`durataInput${processoo}`).value;
+    let priorita = document.getElementById(`prioritaInput${processoo}`).value;
     let buttonn = document.getElementById(`modify${processoo}`);
 
     if (arrivo >= 0 && durata >= 0 && priorita >= 0) {
