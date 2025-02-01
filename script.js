@@ -520,11 +520,10 @@ function SRTF() {
         }
         if (preemtive && currentProcess.duration > 0) {
             currentProcess.duration -= executionTime;
-            console.log("Aggiunto " + currentProcess.name + " alla coda temporanea");
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
-            temp.unshift(currentProcess);
+            addEnd(currentProcess);
             tttw(currentProcess);
         }
         } else if (queue.length > 0) {
@@ -562,6 +561,7 @@ function addStart(process) {
 }
 
 function addEnd(process) {
+    console.log("Gay");
     let riga = document.getElementById(`${process.name}-${actual_time-1}`);
     riga.innerHTML = "F";
     riga.style.textAlign = "right";
