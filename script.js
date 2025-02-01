@@ -366,6 +366,12 @@ function tttw(currentProcess) {
 }
 
 function refreshCoda() {
+    for (let i = 0; i < temp.length; i++) {
+        if (temp[i].duration === 0) {
+            temp.splice(i, 1);
+            i--;
+        }
+    }
     const coda = document.getElementById("Coda");
     const cells = temp.map(process => `<td>${process.name}</td>`).join('');
     const table = `<table><tr>${cells}</tr></table>`;
@@ -514,6 +520,7 @@ function SRTF() {
         }
         if (preemtive && currentProcess.duration > 0) {
             currentProcess.duration -= executionTime;
+            console.log("Aggiunto " + currentProcess.name + " alla coda temporanea");
             temp.push(currentProcess);
         } else {
             console.log(`${currentProcess.name} completato al tempo ${actual_time}.`);
