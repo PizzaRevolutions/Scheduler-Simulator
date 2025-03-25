@@ -470,7 +470,7 @@ function priority() {
         const currentProcess = temp.shift();
         let executionTime = 0;
         let preemtive = document.getElementById("check-24 preemtive").checked;
-        if (preemtive && currentProcess.duration > 0) {
+        if (currentProcess.duration > 0 && preemtive) {
             executionTime = 1;
         } else {
             executionTime = currentProcess.duration;
@@ -480,7 +480,7 @@ function priority() {
             addColumn(currentProcess);
             actual_time++;
         }
-        if (preemtive && currentProcess.duration > 0) {
+        if (currentProcess.duration > 1 && preemtive) {
             console.log(`Tempo: ${actual_time}, Esecuzione di ${currentProcess.name} per ${executionTime} unità di tempo.`);
             currentProcess.duration -= executionTime;
             temp.unshift(currentProcess);
