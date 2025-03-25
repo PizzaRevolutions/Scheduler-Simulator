@@ -413,6 +413,9 @@ function roundRobin() {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
         resetValues();
+        let button = document.getElementById("Center-button");
+        button.disabled = true;
+        button.style.backgroundColor = "rgba(150, 150, 150, 1)";
     }
 }
 
@@ -445,6 +448,9 @@ function FCFS() {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
         resetValues();
+        let button = document.getElementById("Center-button");
+        button.disabled = true;
+        button.style.backgroundColor = "rgba(150, 150, 150, 1)";
     }
 }
 
@@ -489,6 +495,9 @@ function priority() {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
         resetValues();
+        let button = document.getElementById("Center-button");
+        button.disabled = true;
+        button.style.backgroundColor = "rgba(150, 150, 150, 1)";
     }
 }
 
@@ -508,7 +517,7 @@ function SRTF() {
         const currentProcess = temp.shift();
         let preemtive = document.getElementById("check-24 preemtive").checked;
         let executionTime;
-        if (preemtive && currentProcess.duration > 0) {
+        if (currentProcess.duration > 0 && preemtive) {
             executionTime = 1;
         } else {
             executionTime = currentProcess.duration;
@@ -518,7 +527,7 @@ function SRTF() {
             addColumn(currentProcess);
             actual_time++;
         }
-        if (preemtive && currentProcess.duration > 0) {
+        if (currentProcess.duration > 1 && preemtive) {
             currentProcess.duration -= executionTime;
             temp.push(currentProcess);
         } else {
@@ -532,6 +541,9 @@ function SRTF() {
         console.log("Simulazione completata.");
         clearInterval(intervallo);
         resetValues();
+        let button = document.getElementById("Center-button");
+        button.disabled = true;
+        button.style.backgroundColor = "rgba(150, 150, 150, 1)";
     }
 }
 function addColumn(process) {
